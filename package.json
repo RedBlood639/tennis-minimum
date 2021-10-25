@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/styled-components": "^5.1.15",
+    "@styled-system/theme-get": "^5.1.2",
+    "@types/styled-system": "^5.1.13",
+    "babel-plugin-styled-components": "^1.13.3",
+    "babel-preset-next": "^1.4.0",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "@types/react": "17.0.32",
+    "@types/styled-components": "^5.1.15",
+    "@types/styled-system__theme-get": "^5.0.2",
     "eslint": "8.1.0",
     "eslint-config-next": "11.1.2",
     "typescript": "4.4.4"
