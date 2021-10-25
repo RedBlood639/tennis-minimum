@@ -9,7 +9,6 @@ export const FooterWrapper = styled.div`
   background-color: ${themeGet('colors.green')};
   height: 50px;
   width: 100%;
-  bottom: 0;
 `
 export const FooterCopyRight = styled.div`
   font-size: 17px;
