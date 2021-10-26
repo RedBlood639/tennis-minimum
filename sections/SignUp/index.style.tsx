@@ -7,6 +7,15 @@ export const SignUpWrapper = styled.div`
   width: 50%;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 503px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 365px) {
+    width: 92%;
+  }
 `
 
 export const SignUpHeaderLabel = styled.span`

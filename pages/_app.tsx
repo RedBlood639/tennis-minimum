@@ -9,6 +9,9 @@ import { ThemeProvider } from 'styled-components'
 import { PageProvider } from '../contexts/pageLoad/pageloader.provider'
 //import style
 import GlobalStyle from '../site-settings/global'
+import { SentMessageProvider } from '../contexts/MessageSent/sentmessage.provider'
+import 'react-responsive-modal/styles.css'
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(false)
 
@@ -28,10 +31,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={DefaultTheme}>
       <PageProvider>
-        <AppLayout>
-          {loading ? <PageLoader /> : <Component {...pageProps} />}
-        </AppLayout>
-        <GlobalStyle />
+        <SentMessageProvider>
+          <AppLayout>
+            {loading ? <PageLoader /> : <Component {...pageProps} />}
+          </AppLayout>
+          <GlobalStyle />
+        </SentMessageProvider>
       </PageProvider>
     </ThemeProvider>
   )

@@ -8,6 +8,9 @@ const HeaderItems: React.FC<{}> = () => {
   }
   return (
     <ItemgroupWrapper>
+      <SignInButton onClick={() => toChangePath('/contact')}>
+        {'Contact'}
+      </SignInButton>
       <SignInButton onClick={() => toChangePath('/signin')}>
         {'Sign In'}
       </SignInButton>

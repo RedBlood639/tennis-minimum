@@ -1,17 +1,18 @@
 import React from 'react'
 import { SEO } from '../components/Seo/seo'
-import SignIn from '../sections/signin/Index'
+import Contact from '../sections/contact'
 import { metaData } from '../site-settings/metadata'
-const SignInPage: React.FC<{}> = () => {
+
+const ContactPage: React.FC<{}> = () => {
   return (
     <>
       <SEO
         title={metaData.home.title}
         description={metaData.home.description}
       />
-      <SignIn />
+      <Contact />
     </>
   )
 }
 
-export default SignInPage
+export default ContactPage

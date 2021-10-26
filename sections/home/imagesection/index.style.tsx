@@ -4,28 +4,39 @@ import { themeGet } from '@styled-system/theme-get'
 export const ImageSectionWrapper = styled.div`
   width: 100%;
 `
-export const ImageSectionLabel = styled.h1`
+
+export const MatchDisplay = styled.div`
   position: absolute;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  display: flex;
   width: 100%;
-  text-align: center;
+  justify-content: center;
+  top: 150px;
+  column-gap: 100px;
+  font-size: 20px;
+  transition-duration: 2s;
+  @media screen and (max-width: 1320px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 1150px) {
+    top: 100px;
+  }
+  @media screen and (max-width: 818px) {
+    display: none;
+  }
+`
+export const ImageSectionLabel = styled.h1`
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: ${themeGet('colors.blue')};
-  font-size: 70px;
-  top: 120px;
-  @media screen and (max-width: 1440px) {
-    font-size: 70px;
-    top: 120px;
-  }
-  @media screen and (max-width: 768px) {
+  font-size: 65px;
+  @media screen and (max-width: 1320px) {
     font-size: 50px;
-    top: 80px;
   }
-  @media screen and (max-width: 425px) {
-    font-size: 35px;
-    top: 80px;
+  @media screen and (max-width: 1150px) {
+    display: none;
   }
-  @media screen and (max-width: 320px) {
-    font-size: 25px;
-    top: 80px;
-  }
+`
+
+export const ScrollDisplay = styled.div`
+  max-height: 342px;
+  overflow: auto;
 `

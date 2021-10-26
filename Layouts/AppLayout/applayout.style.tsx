@@ -12,6 +12,6 @@ export const LayoutContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  min-height: calc(100vh - 50px);
   width: 100%;
 `

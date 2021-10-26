@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { themeGet } from '@styled-system/theme-get'
 
-export const SignInWrapper = styled.div`
+export const ForgotWrapper = styled.div`
   display: flex;
   width: 60%;
   flex-direction: column;
@@ -11,21 +11,15 @@ export const SignInWrapper = styled.div`
     width: 80%;
   }
   @media screen and (max-width: 365px) {
-    width: 90%;
+    width: 95%;
   }
 `
-export const SignInHeaderLabel = styled.span`
+export const ForgotHeaderLabel = styled.span`
   font-size: 30px;
   font-weight: 450;
   margin: 80px 0 30px 0;
 `
-
-export const SignInLabel = styled.span`
-  font-size: 15px;
-  margin-bottom: 30px;
-`
-
-export const SignInButton = styled.button`
+export const ForgotButton = styled.button`
   margin: 1.5rem;
   color: ${themeGet('colors.white')};
   padding: 0.3rem 4rem;

@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import { themeGet } from '@styled-system/theme-get'
 export const HeaderWrapper = styled.div`
   height: 60px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
   background: ${themeGet('colors.green')};
   padding: 0 20px;
   display: flex;
