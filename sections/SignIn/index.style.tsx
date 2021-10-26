@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get'
 
 export const SignInWrapper = styled.div`
   display: flex;
-  width: 60%;
+  width: 40%;
   flex-direction: column;
   justify-content: center;
   align-items: center;

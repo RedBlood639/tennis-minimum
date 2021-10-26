@@ -11,6 +11,7 @@ import { PageProvider } from '../contexts/pageLoad/pageloader.provider'
 import GlobalStyle from '../site-settings/global'
 import { SentMessageProvider } from '../contexts/MessageSent/sentmessage.provider'
 import 'react-responsive-modal/styles.css'
+import { AuthProvider } from '../contexts/Auth/auth.provider'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(false)
@@ -30,14 +31,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeProvider theme={DefaultTheme}>
-      <PageProvider>
-        <SentMessageProvider>
-          <AppLayout>
-            {loading ? <PageLoader /> : <Component {...pageProps} />}
-          </AppLayout>
-          <GlobalStyle />
-        </SentMessageProvider>
-      </PageProvider>
+      <AuthProvider>
+        <PageProvider>
+          <SentMessageProvider>
+            <AppLayout>
+              {loading ? <PageLoader /> : <Component {...pageProps} />}
+            </AppLayout>
+            <GlobalStyle />
+          </SentMessageProvider>
+        </PageProvider>
+      </AuthProvider>
     </ThemeProvider>
   )
 }

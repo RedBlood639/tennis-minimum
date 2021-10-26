@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   SignInWrapper,
   SignInButton,
@@ -8,8 +8,9 @@ import {
 import { FormProps } from '../formsection/type'
 import FormSection from '../formsection'
 import Link from 'next/link'
-
+import { AuthContext } from '../../contexts/Auth/auth.context'
 const SignIn: React.FC<{}> = () => {
+  const { loadDispatch } = useContext<any>(AuthContext)
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -31,6 +32,7 @@ const SignIn: React.FC<{}> = () => {
   ]
 
   const getState = () => {
+    loadDispatch({ type: true })
     console.log(email, password)
   }
   return (
@@ -49,7 +51,7 @@ const SignIn: React.FC<{}> = () => {
         )
       })}
 
-      <SignInButton onClick={() => getState()}>{'Register'}</SignInButton>
+      <SignInButton onClick={() => getState()}>{'Sign In'}</SignInButton>
 
       <SignInLabel>
         Forgot your password?{' '}

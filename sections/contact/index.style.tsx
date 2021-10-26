@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
+
 export const ContactWrapper = styled.div`
   width: 60%;
   display: flex;
@@ -7,11 +8,18 @@ export const ContactWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 25px 0;
+  background-color: floralwhite;
+  @media screen and (max-width: 768px) {
+    width: 85%;
+  }
 `
 
 export const ContactHeader = styled.span`
   font-size: 35px;
   font-weight: 500;
+  @media screen and (max-width: 768px) {
+    margin-top: 80px;
+  }
 `
 
 export const ContactContent = styled.div`
@@ -27,6 +35,10 @@ export const ContactMain = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
 `
 export const ContactLabel = styled.span`
   color: ${themeGet('colors.orange')};

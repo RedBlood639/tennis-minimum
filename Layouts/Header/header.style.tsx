@@ -24,7 +24,7 @@ const HeaderLabel = styled.span`
 `
 export const HeaderLogoLabel = styled(HeaderLabel)`
   font-size: 25px;
-  @media screen and (max-width: 460px) {
+  @media screen and (max-width: 586px) {
     display: none;
   }
 `
