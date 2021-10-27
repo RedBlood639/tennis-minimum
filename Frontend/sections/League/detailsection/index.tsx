@@ -9,6 +9,7 @@ import {
   MemeberWrapper,
   DeleteButton,
   SaveButton,
+  MemberState,
 } from './index.style'
 const data = [
   {
@@ -60,6 +61,11 @@ const MemberCard: React.FC<{ item: any; index: number }> = ({
       <MemberLabel>{item.name}</MemberLabel>
       <div></div>
       <MemberLabel>{item.rate}</MemberLabel>
+      <MemberState>
+        <option value="YES">YES</option>
+        <option value="NOT">NOT</option>
+        <option value="MAYBE">MAYBE</option>
+      </MemberState>
       <DeleteButton>{'Delete'}</DeleteButton>
     </MemeberWrapper>
   )

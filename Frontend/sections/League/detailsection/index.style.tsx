@@ -65,6 +65,17 @@ export const MemeberWrapper = styled.div`
   padding: 5px 10px;
   border-radius: 0.3rem;
   display: grid;
-  grid-template-columns: 0.5fr 2.5fr 0.2fr 0.2fr 0fr;
+  grid-template-columns: 0.5fr 2.5fr 0.2fr 0.2fr 0.5fr 0fr;
   align-items: center;
+`
+export const MemberState = styled.select`
+  border-radius: 5%;
+  height: 37px;
+  border: transparent;
+  margin-right: 5px;
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
 `
