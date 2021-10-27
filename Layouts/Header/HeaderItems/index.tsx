@@ -47,6 +47,18 @@ const HeaderItems: React.FC<{}> = () => {
 
   return (
     <ItemgroupWrapper>
+      {login ? (
+        <>
+          <SignInButton onClick={() => toChangePath('/teamroster')}>
+            {'League'}
+          </SignInButton>
+          <SignInButton onClick={() => toChangePath('/match')}>
+            {'Match'}
+          </SignInButton>
+        </>
+      ) : (
+        ''
+      )}
       <SignInButton onClick={() => toChangePath('/contact')}>
         {'Contact'}
       </SignInButton>

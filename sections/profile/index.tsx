@@ -25,7 +25,7 @@ const Profile: React.FC<{}> = () => {
   }
   return (
     <ProfileWrapper>
-      <ProfileHeader>{"Li Haoming's Profile"}</ProfileHeader>
+      <ProfileHeader>{"User's Profile"}</ProfileHeader>
       <ProfileContent>
         <ProfileForm>
           <ProfileLabel>{'First Name'}</ProfileLabel>

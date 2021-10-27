@@ -1,5 +1,9 @@
 import React from 'react'
-import { MemberSectionWrapper, MemberName, MemvberRate } from './index.styled'
+import {
+  MemberSectionWrapper,
+  MemberName,
+  MemberCheckBox,
+} from './index.styled'
 
 type memberprops = {
   name: string
@@ -12,9 +16,11 @@ const MemberSection: React.FC<{ data: memberprops; id: number }> = ({
 }) => {
   return (
     <MemberSectionWrapper>
+      <MemberCheckBox type="checkbox" />
       <MemberName>{id + 1}</MemberName>
       <MemberName>{data.name}</MemberName>
-      <MemvberRate>{data.rate}</MemvberRate>
+      <MemberName>{''}</MemberName>
+      <MemberName>{data.rate}</MemberName>
     </MemberSectionWrapper>
   )
 }

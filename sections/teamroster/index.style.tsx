@@ -1,30 +1,30 @@
 import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
-import { Modal } from 'react-responsive-modal'
 
 export const TeamRosterWrapper = styled.div`
   display: flex;
   justify-content: center;
-  column-gap: 100px;
   width: 100%;
-  padding: 100px;
 `
 
 export const TeamRosterGroup = styled.div`
-  width: 50%;
+  width: 70%;
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 425px) {
+    width: 90%;
+  }
 `
 
-export const MemberContent = styled.div`
+export const TeamRosterContent = styled.div`
   max-height: calc(100vh - 250px);
   overflow: auto;
   border-radius: 0.3rem;
   border: 1px solid rgba(0, 0, 0, 0.35);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 `
 
-export const MembersGroup = styled.div`
-  width: 50%;
-`
 export const MemberLabel = styled.span`
   font-size: 25px;
   color: ${themeGet('colors.green')};
@@ -55,6 +55,7 @@ export const RosterHeader = styled.div`
   border-bottom: 1px solid ${themeGet('colors.green')};
 `
 
+// modal
 export const ModalForm = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,6 +68,15 @@ export const ModalInput = styled.input`
   height: 35px;
   margin-bottom: 5px;
   width: 500px;
+  @media screen and (max-width: 600px) {
+    width: 350px;
+  }
+  @media screen and (max-width: 425px) {
+    width: 300px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 250px;
+  }
 `
 
 export const ModalButton = styled.button`

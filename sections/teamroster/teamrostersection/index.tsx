@@ -1,20 +1,25 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import {
   TeamRosterWrapper,
   TeamRosterLabel,
-  TeamRosterButton,
   TeamRosterContent,
+  DeleteButton,
 } from './index.style'
 
-const TeamRosterSection: React.FC<{ onChange: Function }> = ({ onChange }) => {
+const TeamRosterSection: React.FC<{}> = () => {
+  const router = useRouter()
+  const toChangePath = () => {
+    router.push('/league')
+  }
   return (
-    <TeamRosterWrapper>
-      <TeamRosterContent onClick={() => onChange(false)}>
+    <TeamRosterWrapper onClick={toChangePath}>
+      <TeamRosterContent>
         <TeamRosterLabel>title</TeamRosterLabel>
         <TeamRosterLabel>Position</TeamRosterLabel>
         <TeamRosterLabel>Time</TeamRosterLabel>
       </TeamRosterContent>
-      <TeamRosterButton>{'DELET'}</TeamRosterButton>
+      <DeleteButton>{'DELET'}</DeleteButton>
     </TeamRosterWrapper>
   )
 }

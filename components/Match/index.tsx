@@ -9,12 +9,6 @@ const data: matchprops[] = [
     Result: '4-2',
     Site: 'Away',
   },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
 
   {
     Date: 'Afghanistan',

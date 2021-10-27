@@ -5,9 +5,9 @@ export const StyledTable = styled.table`
   border: 1px solid #efefef;
   border-collapse: collapse;
   caption-side: bottom;
-
   td {
     padding: 5px 20px;
+    line-break: anywhere;
   }
   tbody tr {
     :nth-of-type(odd) {
