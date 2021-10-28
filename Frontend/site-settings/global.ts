@@ -1,6 +1,13 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+    /* @font-face {
+        font-family: 'Font1';
+        src: url('../assests/fonts/font1.ttf');
+        font-weight: 300;
+        font-style: normal;
+        font-display: auto;
+    } */
     *{
         box-sizing: border-box;
     }

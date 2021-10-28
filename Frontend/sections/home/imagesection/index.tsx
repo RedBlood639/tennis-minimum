@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/dist/client/image'
 import HomeImage from '../../../assests/image/home.jpg'
+
 import {
   ImageSectionLabel,
   ImageSectionWrapper,

@@ -11,12 +11,14 @@
   "dependencies": {
     "@styled-system/theme-get": "^5.1.2",
     "@types/styled-system": "^5.1.13",
+    "axios": "^0.24.0",
     "babel-plugin-styled-components": "^1.13.3",
     "babel-preset-next": "^1.4.0",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-responsive-modal": "^6.1.0",
+    "react-toastify": "^8.0.3",
     "styled-components": "^5.3.3",
     "styled-system": "^5.1.5"
   },

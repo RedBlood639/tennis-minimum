@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Form,
   Input,
@@ -9,24 +9,41 @@ import {
   CancelButton,
 } from './index.style'
 const MatchForm: React.FC<{ onDisplay: Function }> = ({ onDisplay }) => {
+  const [data, setDate] = useState<string>('')
+  const [opponent, setOpponent] = useState<string>('')
+  const [site, setSite] = useState<string>('')
+  const [result, setResult] = useState<string>('')
+
   return (
     <FormWrapper>
       <FormContent>
         <Form>
           <Label>Date : </Label>
-          <Input></Input>
+          <Input
+            value={data}
+            onChange={(e: any) => setDate(e.target.value.trim())}
+          />
         </Form>
         <Form>
           <Label>Opponent : </Label>
-          <Input></Input>
+          <Input
+            value={opponent}
+            onChange={(e: any) => setDate(e.target.value.trim())}
+          />
         </Form>
         <Form>
           <Label>Site : </Label>
-          <Input></Input>
+          <Input
+            value={site}
+            onChange={(e: any) => setDate(e.target.value.trim())}
+          />
         </Form>
         <Form>
           <Label>Result : </Label>
-          <Input></Input>
+          <Input
+            value={result}
+            onChange={(e: any) => setDate(e.target.value.trim())}
+          />
         </Form>
         <Form />
       </FormContent>

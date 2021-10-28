@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { toast } from 'react-toastify'
+import { apiClientwithToken } from '../../utils/apiclient'
+import { AuthContext } from '../../contexts/Auth/auth.context'
 import {
   AccountButton,
   AccountContent,
@@ -8,13 +11,56 @@ import {
   AccountLabel,
   AccountWrapper,
 } from './index.style'
+import { isEmpty } from '../../utils/isEmpty'
 const Account: React.FC<{}> = () => {
+  const {
+    loadState: { c_email, token },
+  } = useContext<any>(AuthContext)
+
   const [oldPass, setOldPass] = useState<string>('')
   const [newPass, setNewPass] = useState<string>('')
   const [confirmPass, setConfirmPass] = useState<string>('')
 
+  useEffect(() => {
+    console.log(token + 'dss')
+  }, [])
+
   const onSave = () => {
-    console.log(`object`)
+    if (isEmpty(oldPass)) {
+      return toast.error('Please input old password.')
+    }
+    if (isEmpty(confirmPass)) {
+      return toast.error('Please input confirm password.')
+    }
+    if (isEmpty(newPass)) {
+      return toast.error('Please input new password.')
+    }
+    if (isEmpty(confirmPass)) {
+      return toast.error('Please input confirm password.')
+    }
+    if (newPass !== confirmPass) {
+      return toast.error("New password didn't match with confirm one.")
+    }
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .put('/account', {
+        oldPass,
+        newPass,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          toast.info(res.data.message)
+          setOldPass('')
+          setNewPass('')
+          setConfirmPass('')
+        }
+      })
+      .catch((err) => {
+        if (err.response.status == 404) {
+          toast.error('Server Disconected.')
+        } else {
+          toast.error(err.response.data.message)
+        }
+      })
   }
 
   return (
@@ -30,7 +76,7 @@ const Account: React.FC<{}> = () => {
           <AccountInput
             type="password"
             value={oldPass}
-            onChange={(e) => setOldPass(e.target.value)}
+            onChange={(e: any) => setOldPass(e.target.value.trim())}
           />
         </AccountForm>
         <br></br>
@@ -39,7 +85,7 @@ const Account: React.FC<{}> = () => {
           <AccountInput
             type="password"
             value={newPass}
-            onChange={(e) => setNewPass(e.target.value)}
+            onChange={(e: any) => setNewPass(e.target.value.trim())}
           />
         </AccountForm>
         <AccountForm>
@@ -47,7 +93,7 @@ const Account: React.FC<{}> = () => {
           <AccountInput
             type="password"
             value={confirmPass}
-            onChange={(e) => setConfirmPass(e.target.value)}
+            onChange={(e: any) => setConfirmPass(e.target.value.trim())}
           />
         </AccountForm>
       </AccountContent>

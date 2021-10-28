@@ -44,7 +44,6 @@ const HeaderItems: React.FC<{}> = () => {
     loadDispatch({ type: false })
     toChangePath('/')
   }
-
   return (
     <ItemgroupWrapper>
       {login ? (

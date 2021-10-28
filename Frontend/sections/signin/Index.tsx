@@ -9,7 +9,12 @@ import { FormProps } from '../formsection/type'
 import FormSection from '../formsection'
 import Link from 'next/link'
 import { AuthContext } from '../../contexts/Auth/auth.context'
+import { apiClientwithToken } from '../../utils/apiclient'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
+
 const SignIn: React.FC<{}> = () => {
+  const router = useRouter()
   const { loadDispatch } = useContext<any>(AuthContext)
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
@@ -31,9 +36,32 @@ const SignIn: React.FC<{}> = () => {
     },
   ]
 
-  const getState = () => {
-    loadDispatch({ type: true })
-    console.log(email, password)
+  const onSave = () => {
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .post('/users/siginin', {
+        email,
+        password,
+      })
+      .then(
+        (response) => {
+          if (response.data.success) {
+            loadDispatch({
+              type: true,
+              c_email: response.data.email,
+              token: response.data.token,
+            })
+            toast.info(response.data.message)
+            router.push('/panel')
+          }
+        },
+        (error) => {
+          if (error.response.status == 404) {
+            toast.error('Server Disconected.')
+          } else {
+            toast.error(error.response.data.message)
+          }
+        },
+      )
   }
   return (
     <SignInWrapper>
@@ -51,7 +79,7 @@ const SignIn: React.FC<{}> = () => {
         )
       })}
 
-      <SignInButton onClick={() => getState()}>{'Sign In'}</SignInButton>
+      <SignInButton onClick={() => onSave()}>{'Sign In'}</SignInButton>
 
       <SignInLabel>
         Forgot your password?{' '}

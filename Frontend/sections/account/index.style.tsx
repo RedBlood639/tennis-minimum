@@ -5,6 +5,7 @@ export const AccountWrapper = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
   @media screen and (max-width: 729px) {
     width: 80%;
   }

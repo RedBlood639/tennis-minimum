@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { apiClientwithToken } from '../../utils/apiclient'
+import { isEmpty } from '../../utils/isEmpty'
 import {
   ProfileContent,
   ProfileHeader,
@@ -14,14 +17,67 @@ const Profile: React.FC<{}> = () => {
   const [firstname, setFirstName] = useState<string>('')
   const [lastname, setLastName] = useState<string>('')
   const [club, setClub] = useState<string>('')
-  const [skilllevel, setSkillLevel] = useState<string>('')
-  const [gender, setGender] = useState<string>('')
+  const [skill, setSkill] = useState<string>('0.0')
+  const [gender, setGender] = useState<string>('Male')
   const [zipcode, setZipCode] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
   const [birth, setBirth] = useState<string>('')
 
+  useEffect(() => {
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .get('/profile')
+      .then((res) => {
+        if (res.data.success) {
+          setFirstName(res.data.item.firstname)
+          setClub(res.data.item.club)
+          setLastName(res.data.item.lastname)
+          setSkill(res.data.item.skill)
+          setGender(res.data.item.gender)
+          setZipCode(res.data.item.zipcode)
+          setPhone(res.data.item.phone)
+          setBirth(res.data.item.birth)
+        }
+      })
+      .catch((err) => {
+        if (err.response.status == 404) {
+          toast.error('Server Disconected.')
+        } else {
+          toast.error(err.response.data.message)
+        }
+      })
+  }, [])
+
   const onSave = () => {
-    console.log('save')
+    if (isEmpty(firstname)) {
+      return toast.error('Please input the firstname.')
+    }
+    if (isEmpty(lastname)) {
+      return toast.error('Please input the lastname')
+    }
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .put('/profile', {
+        firstname,
+        lastname,
+        club,
+        skill,
+        gender,
+        zipcode,
+        phone,
+        birth,
+        user: localStorage.getItem(`tennis`),
+      })
+      .then((res) => {
+        if (res.data.success) {
+          toast.info(res.data.message)
+        }
+      })
+      .catch((err) => {
+        if (err.response.status == 404) {
+          toast.error('Server Disconected.')
+        } else {
+          toast.error(err.response.data.message)
+        }
+      })
   }
   return (
     <ProfileWrapper>
@@ -31,21 +87,21 @@ const Profile: React.FC<{}> = () => {
           <ProfileLabel>{'First Name'}</ProfileLabel>
           <ProfileInput
             value={firstname}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e: any) => setFirstName(e.target.value)}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'Last Name'}</ProfileLabel>
           <ProfileInput
             value={lastname}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e: any) => setLastName(e.target.value)}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'Skill Level'}</ProfileLabel>
           <ProfileSelect
-            value={skilllevel}
-            onChange={(e) => setSkillLevel(e.target.value)}
+            value={skill}
+            onChange={(e: any) => setSkill(e.target.value)}
           >
             <option value="0.0">{'0.0'}</option>
             <option value="2.5">{'2.5'}</option>
@@ -62,14 +118,14 @@ const Profile: React.FC<{}> = () => {
           <ProfileLabel>{'Home Club'}</ProfileLabel>
           <ProfileInput
             value={club}
-            onChange={(e) => setClub(e.target.value)}
+            onChange={(e: any) => setClub(e.target.value)}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'Gender'}</ProfileLabel>
           <ProfileSelect
             value={gender}
-            onChange={(e) => setGender(e.target.value)}
+            onChange={(e: any) => setGender(e.target.value)}
           >
             <option value="Male">{'Male'}</option>
             <option value="Female">{'Female'}</option>
@@ -79,21 +135,21 @@ const Profile: React.FC<{}> = () => {
           <ProfileLabel>{'Zip Code'}</ProfileLabel>
           <ProfileInput
             value={zipcode}
-            onChange={(e) => setZipCode(e.target.value)}
+            onChange={(e: any) => setZipCode(e.target.value)}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'phone Number'}</ProfileLabel>
           <ProfileInput
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e: any) => setPhone(e.target.value)}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'Birth Year'}</ProfileLabel>
           <ProfileInput
             value={birth}
-            onChange={(e) => setBirth(e.target.value)}
+            onChange={(e: any) => setBirth(e.target.value)}
           />
         </ProfileForm>
       </ProfileContent>

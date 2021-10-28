@@ -9,7 +9,7 @@ const FormSection: React.FC<FormProps> = ({
   type,
 }) => {
   const onChangeState = (e: any) => {
-    setState(e.target.value)
+    setState(e.target.value.trim())
   }
   return (
     <FormWrapper>
@@ -17,7 +17,7 @@ const FormSection: React.FC<FormProps> = ({
       <FormInput
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChangeState(e)}
+        onChange={(e: any) => onChangeState(e: any)}
         type={type}
       ></FormInput>
     </FormWrapper>

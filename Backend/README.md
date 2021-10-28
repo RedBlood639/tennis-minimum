@@ -11,7 +11,7 @@ npm install
 ###
 
 npm start
-  
+
 npm run dev
 
 ## database migration
@@ -29,3 +29,5 @@ open cmd prompt
 # delete tables
 
     node migration.js down [table count number]
+
+albinorabbithunter@gmail.com

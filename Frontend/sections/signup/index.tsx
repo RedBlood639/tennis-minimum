@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useRouter } from 'next/router'
 import { SignUpWrapper, SignUpHeaderLabel, SignUpButton } from './index.style'
 import FormSection from '../formsection'
 import { FormProps } from '../formsection/type'
+import { apiClientwithToken } from '../../utils/apiclient'
+import { toast } from 'react-toastify'
+import { isEmpty } from '../../utils/isEmpty'
+import { AuthContext } from '../../contexts/Auth/auth.context'
+
 const SignIn: React.FC<{}> = () => {
+  const { loadDispatch } = useContext<any>(AuthContext)
+  const router = useRouter()
   const [email, setEmail] = useState<string>('')
   const [firstname, setFirstName] = useState<string>('')
   const [lastname, setLastName] = useState<string>('')
@@ -45,6 +53,56 @@ const SignIn: React.FC<{}> = () => {
       type: 'password',
     },
   ]
+
+  const onSignUp = () => {
+    if (isEmpty(email)) {
+      return toast.error('Please input Email.')
+    }
+    if (isEmpty(firstname)) {
+      return toast.error('Please input FirstName.')
+    }
+    if (isEmpty(lastname)) {
+      return toast.error('Please input LastName.')
+    }
+    if (isEmpty(password1)) {
+      return toast.error('Please input Password.')
+    }
+    // if (password1.trim().length < 8) {
+    //   return toast.error('Password should more 8 charaters.')
+    // }
+    if (password1.trim() !== password2.trim()) {
+      return toast.error("Password didn't matched.")
+    }
+
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .post('/users/signup', {
+        email,
+        firstname,
+        lastname,
+        password1,
+        role: 'common',
+      })
+      .then(
+        (response) => {
+          if (response.data.success) {
+            loadDispatch({
+              type: true,
+              token: response.data.token,
+              c_email: response.data.email,
+            })
+            toast.info(response.data.message)
+            router.push('/panel')
+          }
+        },
+        (error) => {
+          if (error.response.status == 404) {
+            toast.error('Server Disconected.')
+          } else {
+            toast.error(error.response.data.message)
+          }
+        },
+      )
+  }
   return (
     <SignUpWrapper>
       <SignUpHeaderLabel>{'Create a new account.'}</SignUpHeaderLabel>
@@ -61,7 +119,7 @@ const SignIn: React.FC<{}> = () => {
         )
       })}
 
-      <SignUpButton>{'Register'}</SignUpButton>
+      <SignUpButton onClick={onSignUp}>{'Register'}</SignUpButton>
     </SignUpWrapper>
   )
 }
