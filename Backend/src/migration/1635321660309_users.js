@@ -13,9 +13,9 @@ module.exports = {
     zipcode         VARCHAR(20),
     phone           VARCHAR(15),
     birth           VARCHAR(30),
-    isDisable       BOOLEAN NOT NULL DEFAULT TRUE,
     CODE            INT(10) NOT NULL DEFAULT 22222,
     RESET           INT(10) NOT NULL DEFAULT 11111,
+    isDisable       BOOLEAN NOT NULL DEFAULT TRUE,
     created_on      DATETIME NOT NULL DEFAULT NOW(),
     updated_on      DATETIME NOT NULL DEFAULT NOW(),
     remove_on       DATETIME NOT NULL DEFAULT NOW()

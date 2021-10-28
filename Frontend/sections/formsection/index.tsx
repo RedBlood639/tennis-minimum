@@ -17,7 +17,7 @@ const FormSection: React.FC<FormProps> = ({
       <FormInput
         placeholder={placeholder}
         value={value}
-        onChange={(e: any) => onChangeState(e: any)}
+        onChange={(e: any) => onChangeState(e)}
         type={type}
       ></FormInput>
     </FormWrapper>

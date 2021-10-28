@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   MatchContent,
   MatchHeader,
@@ -7,97 +7,101 @@ import {
   SaveButton,
   MatchCards,
 } from './index.style'
-import { matchprops } from '../../components/MatchTable/index.type'
 import MatchForm from './matchformsection'
 import MatchCard from './matchcard'
-const data: matchprops[] = [
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
+import { toast } from 'react-toastify'
+import { apiClientwithToken } from '../../utils/apiclient'
+import { isEmpty } from '../../utils/isEmpty'
 
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-  {
-    Date: 'Afghanistan',
-    Opponent: 'Dunwoodt TC',
-    Result: '4-2',
-    Site: 'Away',
-  },
-]
+type dataprops = {
+  date: string
+  opponent: string
+  site: string
+  result: string
+}
 
 const Match: React.FC<{}> = () => {
   const [open, setOpen] = useState<boolean>(false)
-  const [isnew, setIsnew] = useState<boolean>(true)
+  const [data, setData] = useState<any>([])
+  const [id, setID] = useState<number>(0)
+  const [item, setItem] = useState<dataprops>(null)
 
-  const onDisplay = (flag: boolean) => {
+  const onDisplay = (flag: boolean, id: number) => {
+    if (open && flag) {
+      return toast.error('please save the data.')
+    }
+    setID(id)
     setOpen(flag)
+    if (id !== 0) {
+      const filterdata = data.filter((item: any) => item.id === id)
+      setItem(filterdata[0])
+    }
+    if (!flag) {
+      onGetItems()
+    }
   }
-  const onCancel = () => {
-    setOpen(false)
-  }
+  useEffect(() => {
+    onGetItems()
+  }, [])
 
+  const onGetItems = async () => {
+    await apiClientwithToken(localStorage.getItem('tennis'))
+      .get('/match')
+      .then(
+        (response) => {
+          if (response.data.success) {
+            setData(response.data.item)
+          }
+        },
+        (error) => {
+          if (error.response.status == 404) {
+            toast.error('Server Disconected.')
+          } else {
+            toast.error(error.response.data.message)
+          }
+        },
+      )
+  }
+  const onRemoveItem = (id: number) => {
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .delete(`/match/${id}`)
+      .then(
+        (response) => {
+          if (response.data.success) {
+            const filter = data.filter((item: any) => item.id !== id)
+            setData(data.splice(data))
+          }
+        },
+        (error) => {
+          if (error.response.status == 404) {
+            toast.error('Server Disconected.')
+          } else {
+            toast.error(error.response.data.message)
+          }
+        },
+      )
+  }
   return (
     <MatchWrapper>
       <MatchContent>
         <MatchHeader>
           <MatchLabel>Matches.</MatchLabel>
-          <SaveButton onClick={() => onDisplay(true)}>{'New +'}</SaveButton>
+          <SaveButton onClick={() => onDisplay(true, 0)}>{'New +'}</SaveButton>
         </MatchHeader>
-        {open ? <MatchForm onDisplay={onDisplay} /> : null}
+        {open ? <MatchForm onDisplay={onDisplay} id={id} item={item} /> : null}
         <MatchCards>
-          {data.map((item: any, index: number) => {
-            return (
-              <MatchCard
-                data={item}
-                key={index}
-                index={index + 1}
-                onDisplay={onDisplay}
-              />
-            )
-          })}
+          {!isEmpty(data)
+            ? data.map((item: any, index: number) => {
+                return (
+                  <MatchCard
+                    data={item}
+                    key={index}
+                    onDisplay={onDisplay}
+                    onRemoveItem={onRemoveItem}
+                  />
+                )
+              })
+            : null}
         </MatchCards>
       </MatchContent>
     </MatchWrapper>

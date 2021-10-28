@@ -3,7 +3,6 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const onCreateContact = async (params) => {
-  console.log(process.env.ADMINEMAIL)
   const sql = `INSERT INTO contact 
               (name, clientemail, adminemail, desription) VALUES (?,?,?,?)`
   const result = await DBConnection.query(sql, [

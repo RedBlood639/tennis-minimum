@@ -33,6 +33,10 @@ export const MatchCardLabel = styled.span`
   font-size: 18px;
   line-break: anywhere;
   line-break: anywhere;
+  border-right: 1px solid #cac0ba;
+  @media screen and (max-width: 1000px) {
+    border-bottom: 1px solid #cac0ba;
+  }
 `
 
 const MatchCardButton = styled.button`

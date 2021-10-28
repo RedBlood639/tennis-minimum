@@ -8,27 +8,32 @@ import {
 } from './index.style'
 
 type dataProps = {
-  Date: string
-  Opponent: string
-  Result: string
-  Site: string
+  id: number
+  date: string
+  opponent: string
+  result: string
+  site: string
 }
 
 const MatchCard: React.FC<{
   data: dataProps
-  index: number
   onDisplay: Function
-}> = ({ data, index, onDisplay }) => {
+  onRemoveItem: Function
+}> = ({ data, onDisplay, onRemoveItem }) => {
   return (
     <MatchCardWrapper>
       <MatchCardContent>
-        <MatchCardLabel>{index}</MatchCardLabel>
-        <MatchCardLabel>{data.Date}</MatchCardLabel>
-        <MatchCardLabel>{data.Opponent}</MatchCardLabel>
-        <MatchCardLabel>{data.Site}</MatchCardLabel>
-        <MatchCardLabel>{data.Result}</MatchCardLabel>
-        <UpdateButton onClick={() => onDisplay(true)}>{'Change'}</UpdateButton>
-        <DeleteButton>{'Delete'}</DeleteButton>
+        <MatchCardLabel>{data.id}</MatchCardLabel>
+        <MatchCardLabel>{data.date}</MatchCardLabel>
+        <MatchCardLabel>{data.opponent}</MatchCardLabel>
+        <MatchCardLabel>{data.site}</MatchCardLabel>
+        <MatchCardLabel>{data.result}</MatchCardLabel>
+        <UpdateButton onClick={() => onDisplay(true, data.id)}>
+          {'Change'}
+        </UpdateButton>
+        <DeleteButton onClick={() => onRemoveItem(data.id)}>
+          {'Delete'}
+        </DeleteButton>
       </MatchCardContent>
     </MatchCardWrapper>
   )
