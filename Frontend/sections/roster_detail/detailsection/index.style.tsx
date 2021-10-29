@@ -31,6 +31,9 @@ export const DetailButton = styled.button`
   line-height: 2.5;
   cursor: pointer;
 `
+export const DetailArea = styled.textarea`
+  height: 100px;
+`
 
 export const SaveButton = styled(DetailButton)`
   margin-top: 20px;

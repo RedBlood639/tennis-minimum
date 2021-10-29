@@ -2,21 +2,21 @@ import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
 
 export const LeagueWrapper = styled.div`
-  display: flex;
-  flex: 1;
-  padding: 100px;
-  justify-content: center;
-  gap: 70px;
-  @media screen and (max-width: 998px) {
+  display: grid;
+  margin-top: 100px;
+  gap: 50px;
+  width: 95%;
+  grid-template-columns: 1fr 3fr;
+  /* @media screen and (max-width: 998px) {
     flex-direction: column;
-    padding: 100px 150px;
+    margin: 100px 150px 0px 150px;
   }
   @media screen and (max-width: 768px) {
-    padding: 100px 50px;
+    margin: 100px 50px 0px 50px;
   }
   @media screen and (max-width: 320px) {
-    padding: 100px 10px;
-  }
+    margin: 100px 10px 0px 10px;
+  } */
 `
 export const MemberContent = styled.div`
   max-height: calc(100vh - 250px);
@@ -47,8 +47,5 @@ export const LeagueLabel = styled.span`
 `
 
 export const MembersGroup = styled.div`
-  width: 50%;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-  }
+  width: 100%;
 `

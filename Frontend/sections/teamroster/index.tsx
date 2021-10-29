@@ -24,11 +24,10 @@ const TeamRoster: React.FC<{}> = () => {
   const [roster, setRoster] = useState(false)
   const [title, setTitle] = useState<string>('')
   const [position, setPosition] = useState<string>('')
-  const [time, setTime] = useState<string>('')
 
   useEffect(() => {
     apiClientwithToken(localStorage.getItem('tennis'))
-      .get('/league')
+      .get('/teamroster')
       .then(
         (res) => {
           if (res.data.success) {
@@ -47,11 +46,13 @@ const TeamRoster: React.FC<{}> = () => {
 
   const onRosterModal = () => {
     setRoster(!roster)
+    setTitle('')
+    setPosition('')
   }
 
   const onRemoveItem = (id: number) => {
     apiClientwithToken(localStorage.getItem('tennis'))
-      .delete(`/league/${id}`)
+      .delete(`/teamroster/${id}`)
       .then(
         (res) => {
           if (res.data.success) {
@@ -75,17 +76,13 @@ const TeamRoster: React.FC<{}> = () => {
       return toast.error('Please input the title.')
     }
     if (isEmpty(position)) {
-      return toast.error('Please input the position')
-    }
-    if (isEmpty(time)) {
-      return toast.error('Please input the time.')
+      return toast.error('Please input the description')
     }
 
     apiClientwithToken(localStorage.getItem('tennis'))
-      .post('/league', {
+      .post('/teamroster', {
         title,
         position,
-        time,
       })
       .then(
         (res) => {
@@ -107,7 +104,7 @@ const TeamRoster: React.FC<{}> = () => {
     <TeamRosterWrapper>
       <TeamRosterGroup>
         <RosterHeader>
-          <MemberLabel>All League.</MemberLabel>
+          <MemberLabel>All TeamRoster.</MemberLabel>
           <TeamRosterButton onClick={() => onRosterModal()}>
             {'New Add'}
           </TeamRosterButton>
@@ -126,7 +123,7 @@ const TeamRoster: React.FC<{}> = () => {
       </TeamRosterGroup>
       <Modal open={roster} onClose={() => onRosterModal()} center>
         <ModalHeader>
-          <MemberLabel> {'NEW LEAGUE'}</MemberLabel>
+          <MemberLabel> {'NEW TEAMROSTER'}</MemberLabel>
         </ModalHeader>
         <ModalForm>
           <ModalLabel>{'Title : '}</ModalLabel>
@@ -136,17 +133,10 @@ const TeamRoster: React.FC<{}> = () => {
           ></ModalInput>
         </ModalForm>
         <ModalForm>
-          <ModalLabel>{'Position : '}</ModalLabel>
+          <ModalLabel>{'Description : '}</ModalLabel>
           <ModalInput
             value={position}
             onChange={(e: any) => setPosition(e.target.value.trim())}
-          ></ModalInput>
-        </ModalForm>
-        <ModalForm>
-          <ModalLabel>{'Time : '}</ModalLabel>
-          <ModalInput
-            value={time}
-            onChange={(e: any) => setTime(e.target.value.trim())}
           ></ModalInput>
         </ModalForm>
         <br></br>

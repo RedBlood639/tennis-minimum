@@ -15,7 +15,7 @@ export const StyledTable = styled.table`
   border-collapse: collapse;
   caption-side: bottom;
   td {
-    padding: 5px 20px;
+    padding: 10px 20px;
   }
   tbody tr {
     :nth-of-type(odd) {
@@ -44,21 +44,18 @@ export const ModalLabel = styled.div`
     text-align: right;
     min-width: 80px;
     font-weight: 500;
+    height: 20px;
   }
 `
 
 export const ModalValue = styled.div`
   & p {
+    height: 20px;
     line-break: anywhere;
-    border-bottom: 1px solid #ecf8d3;
   }
 `
 
-export const CustomModal = styled(Modal)`
-  /* &.header {
-    line-break: anywhere;
-  } */
-`
+export const CustomModal = styled(Modal)``
 export const HeaderLabel = styled.h2`
   line-break: anywhere;
 `

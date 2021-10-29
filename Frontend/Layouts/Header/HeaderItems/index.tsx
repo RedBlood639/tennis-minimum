@@ -49,10 +49,10 @@ const HeaderItems: React.FC<{}> = () => {
       {login ? (
         <>
           <SignInButton onClick={() => toChangePath('/members')}>
-            {'Members'}
+            {'All Members'}
           </SignInButton>
           <SignInButton onClick={() => toChangePath('/teamroster')}>
-            {'League'}
+            {'TeamRoster'}
           </SignInButton>
           <SignInButton onClick={() => toChangePath('/match')}>
             {'Match'}

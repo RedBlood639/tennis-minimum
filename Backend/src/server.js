@@ -11,7 +11,7 @@ const profile = require('./routes/profile.route')
 const account = require('./routes/account.route')
 const contact = require('./routes/contact.route')
 const match = require('./routes/match.route')
-const league = require('./routes/league.route')
+const teamroster = require('./routes/teamroster.route')
 const members = require('./routes/members.route')
 //Init App
 const app = express()
@@ -29,7 +29,7 @@ app.use('/profile', profile)
 app.use('/account', account)
 app.use('/contact', contact)
 app.use('/match', match)
-app.use('/league', league)
+app.use('/teamroster', teamroster)
 app.use('/members', members)
 
 app.all('*', (req, res, next) => {

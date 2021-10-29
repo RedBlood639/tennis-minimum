@@ -9,6 +9,7 @@ import {
   MemeberWrapper,
   DeleteButton,
   SaveButton,
+  DetailArea,
   MemberState,
 } from './index.style'
 const data = [
@@ -61,11 +62,6 @@ const MemberCard: React.FC<{ item: any; index: number }> = ({
       <MemberLabel>{item.name}</MemberLabel>
       <div></div>
       <MemberLabel>{item.rate}</MemberLabel>
-      <MemberState>
-        <option value="YES">YES</option>
-        <option value="NOT">NOT</option>
-        <option value="MAYBE">MAYBE</option>
-      </MemberState>
       <DeleteButton>{'Delete'}</DeleteButton>
     </MemeberWrapper>
   )
@@ -75,20 +71,16 @@ const DetailSection: React.FC<{}> = () => {
   return (
     <DetailWrapper>
       <DetailForm>
-        <DetailLabel>{'Title'}</DetailLabel>
+        <DetailLabel>{'Title : '}</DetailLabel>
         <DetailInput></DetailInput>
       </DetailForm>
       <DetailForm>
-        <DetailLabel>{'Position'}</DetailLabel>
-        <DetailInput></DetailInput>
-      </DetailForm>
-      <DetailForm>
-        <DetailLabel>{'Time'}</DetailLabel>
-        <DetailInput></DetailInput>
+        <DetailLabel>{'Description : '}</DetailLabel>
+        <DetailArea></DetailArea>
       </DetailForm>
       <br />
       <DetailForm>
-        <DetailLabel>{'Members'}</DetailLabel>
+        <DetailLabel>{'Members : '}</DetailLabel>
         <DetailContent>
           {data.map((item: any, index: number) => {
             return (

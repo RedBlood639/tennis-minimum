@@ -17,11 +17,13 @@ export const TeamRosterContent = styled.div`
   width: 100%;
   padding: 8px 3px;
 `
-export const TeamRosterLabel = styled.p`
+export const TeamRosterLabel = styled.p<{ kind?: string }>`
   margin: 2px;
+  margin-right: 20px;
   font-size: 18px;
   line-break: anywhere;
-  border-bottom: 1px solid #cac0ba;
+  border-bottom: ${(props) =>
+    props.kind === 'title' ? '1px solid #9eca63;' : 'none'};
 `
 const TeamRosterButton = styled.button`
   margin-right: 10px;

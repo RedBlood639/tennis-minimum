@@ -67,14 +67,14 @@ const MemberSection: React.FC<{ data: any }> = ({ data }) => {
                 <p>Phone : </p>
               </ModalLabel>
               <ModalValue>
-                <p>{Item.firstname}</p>
-                <p>{Item.lastname}</p>
-                <p>{Item.email}</p>
-                <p>{Item.gender}</p>
-                <p>{Item.skill}</p>
-                <p>{Item.club}</p>
-                <p>{Item.zipcode}</p>
-                <p>{Item.phone}</p>
+                <p>{Item.firstname || '-'}</p>
+                <p>{Item.lastname || '-'}</p>
+                <p>{Item.email || '-'}</p>
+                <p>{Item.gender || '-'}</p>
+                <p>{Item.skill || '-'}</p>
+                <p>{Item.club || '-'}</p>
+                <p>{Item.zipcode || '-'}</p>
+                <p>{Item.phone || '-'}</p>
               </ModalValue>
             </ModalContent>
           </>

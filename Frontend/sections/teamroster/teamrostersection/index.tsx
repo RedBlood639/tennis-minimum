@@ -13,15 +13,14 @@ const TeamRosterSection: React.FC<{ item: any; onRemoveItem: Function }> = ({
 }) => {
   const router = useRouter()
   const toChangePath = () => {
-    router.push('/league')
+    router.push('/roster_detail')
   }
 
   return (
     <TeamRosterWrapper>
       <TeamRosterContent onClick={toChangePath}>
-        <TeamRosterLabel>{item.title}</TeamRosterLabel>
+        <TeamRosterLabel kind="title">{item.title}</TeamRosterLabel>
         <TeamRosterLabel>{item.position}</TeamRosterLabel>
-        <TeamRosterLabel>{item.time}</TeamRosterLabel>
       </TeamRosterContent>
       <DeleteButton onClick={() => onRemoveItem(item.id)}>
         {'DELET'}
