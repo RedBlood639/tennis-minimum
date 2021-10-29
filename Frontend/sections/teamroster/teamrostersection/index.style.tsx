@@ -21,6 +21,7 @@ export const TeamRosterLabel = styled.p`
   margin: 2px;
   font-size: 18px;
   line-break: anywhere;
+  border-bottom: 1px solid #cac0ba;
 `
 const TeamRosterButton = styled.button`
   margin-right: 10px;

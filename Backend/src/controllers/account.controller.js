@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 /***********************************Export*******************************************/
 
 const onUpdateAccount = async (req, res, next) => {
-  console.log(req.body)
   const result = await UserModel.isEmptyUser({ id: req.body.currentUser })
   if (!result.state) {
     throw new HttpException(401, 'Incorrect account.')

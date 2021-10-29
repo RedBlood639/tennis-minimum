@@ -66,8 +66,15 @@ export const ModalLabel = styled.span`
 `
 export const ModalInput = styled.input`
   height: 35px;
+  border-radius: 0.3rem;
   margin-bottom: 5px;
   width: 500px;
+  border: 1px solid #8d8f91;
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
   @media screen and (max-width: 600px) {
     width: 350px;
   }

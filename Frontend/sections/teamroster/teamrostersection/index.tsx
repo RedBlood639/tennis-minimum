@@ -7,19 +7,24 @@ import {
   DeleteButton,
 } from './index.style'
 
-const TeamRosterSection: React.FC<{}> = () => {
+const TeamRosterSection: React.FC<{ item: any; onRemoveItem: Function }> = ({
+  item,
+  onRemoveItem,
+}) => {
   const router = useRouter()
   const toChangePath = () => {
     router.push('/league')
   }
   return (
-    <TeamRosterWrapper onClick={toChangePath}>
-      <TeamRosterContent>
-        <TeamRosterLabel>title</TeamRosterLabel>
-        <TeamRosterLabel>Position</TeamRosterLabel>
-        <TeamRosterLabel>Time</TeamRosterLabel>
+    <TeamRosterWrapper>
+      <TeamRosterContent onClick={toChangePath}>
+        <TeamRosterLabel>{item.title}</TeamRosterLabel>
+        <TeamRosterLabel>{item.position}</TeamRosterLabel>
+        <TeamRosterLabel>{item.time}</TeamRosterLabel>
       </TeamRosterContent>
-      <DeleteButton>{'DELET'}</DeleteButton>
+      <DeleteButton onClick={() => onRemoveItem(item.id)}>
+        {'DELET'}
+      </DeleteButton>
     </TeamRosterWrapper>
   )
 }

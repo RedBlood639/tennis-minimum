@@ -30,9 +30,9 @@ const onUpdateMatch = async (params) => {
 }
 
 const onGetMatches = async () => {
-  const sql = `SELECT * FROM matches WHERE isDisable = ?`
+  const sql = `SELECT * FROM matches WHERE isDisable = 1`
   try {
-    const result = await DBConnection.query(sql, [1])
+    const result = await DBConnection.query(sql)
     return {
       state: true,
       item: result,
@@ -46,8 +46,7 @@ const onGetMatches = async () => {
 }
 
 const onRemoveItem = async (params) => {
-  console.log(params)
-  const sql = `DELETE FROM matches WHERE id = ?`
+  const sql = `UPDATE matches SET isDisable = 0  WHERE id = ?`
   try {
     await DBConnection.query(sql, [params.id])
     return true
