@@ -36,16 +36,16 @@ export const SEO: React.FC<SeoProps> = ({
       property="og:description"
       content={description}
     />
-    <meta property="og:site_name" content="SplitChek" />
-    <meta property="og:url" content={`${canonical || 'splitchek.com'}`} />
+    <meta property="og:site_name" content="example" />
+    <meta property="og:url" content={`${canonical || 'example.com'}`} />
     {image ? <meta property="og:image" content={`${image}`} /> : ''}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:site" content={`${canonical || 'splitchek.com'}`} />
+    <meta name="twitter:site" content={`${canonical || 'example.com'}`} />
     {image && <meta name="twitter:image" content={`${image}`} />}
     {canonical && <link rel="canonical" href={`${canonical}`} />}
-    <link rel="publisher" href="www.splitchek.com" />
+    <link rel="publisher" href="www.example.com" />
     <meta name="robots" content="index,follow" />
     <meta name="GOOGLEBOT" content="index,follow" />
     {css && <link rel="stylesheet" href={`${css}`} />}

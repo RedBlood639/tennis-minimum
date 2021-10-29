@@ -18,10 +18,6 @@ export const TeamRosterGroup = styled.div`
 `
 
 export const TeamRosterContent = styled.div`
-  max-height: calc(100vh - 250px);
-  overflow: auto;
-  border-radius: 0.3rem;
-  border: 1px solid rgba(0, 0, 0, 0.35);
   box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 `
 
@@ -47,14 +43,26 @@ export const TeamRosterButton = styled.button`
 `
 
 export const RosterHeader = styled.div`
+  /* position: fixed; */
+  /* /* width: 100%; */
   display: flex;
   justify-content: space-between;
   column-gap: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
+  margin-top: 100px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
   border-bottom: 1px solid ${themeGet('colors.green')};
 `
-
+export const ModalHeader = styled.div`
+  /* position: fixed; */
+  /* /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  column-gap: 20px;
+  margin: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid ${themeGet('colors.green')};
+`
 // modal
 export const ModalForm = styled.div`
   display: flex;

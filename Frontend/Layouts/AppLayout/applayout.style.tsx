@@ -4,7 +4,7 @@ export const LayoutWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
 `
 
 export const LayoutContent = styled.div`

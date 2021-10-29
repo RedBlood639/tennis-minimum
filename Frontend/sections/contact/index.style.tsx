@@ -7,7 +7,7 @@ export const ContactWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 25px 0;
+  margin-top: 25px;
   background-color: floralwhite;
   @media screen and (max-width: 768px) {
     width: 85%;
@@ -16,6 +16,7 @@ export const ContactWrapper = styled.div`
 
 export const ContactHeader = styled.span`
   font-size: 35px;
+  margin-top: 50px;
   font-weight: 500;
   @media screen and (max-width: 768px) {
     margin-top: 80px;
@@ -33,8 +34,8 @@ export const ContactContent = styled.div`
 `
 export const ContactMain = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 5px;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 5px;

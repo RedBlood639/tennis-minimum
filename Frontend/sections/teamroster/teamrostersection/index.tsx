@@ -15,6 +15,7 @@ const TeamRosterSection: React.FC<{ item: any; onRemoveItem: Function }> = ({
   const toChangePath = () => {
     router.push('/league')
   }
+
   return (
     <TeamRosterWrapper>
       <TeamRosterContent onClick={toChangePath}>

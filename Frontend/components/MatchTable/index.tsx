@@ -3,7 +3,6 @@ import { StyledTable } from './index.style'
 import { matchprops } from './index.type'
 
 const MatchTable: React.FC<{ data: matchprops[] }> = ({ data }) => {
-  console.log(data)
   return (
     <StyledTable>
       <thead>

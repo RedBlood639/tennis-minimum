@@ -5,6 +5,7 @@ export const LeagueWrapper = styled.div`
   display: flex;
   flex: 1;
   padding: 100px;
+  justify-content: center;
   gap: 70px;
   @media screen and (max-width: 998px) {
     flex-direction: column;
@@ -30,7 +31,6 @@ export const MemberContent = styled.div`
   border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 `
-export const LeagueContent = styled.div``
 
 export const LeagueHeader = styled.div`
   display: flex;

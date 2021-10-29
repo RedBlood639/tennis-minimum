@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
     html, body, #__next{
         height: 100%;
-        width: 100%;
+        width: 100vw;
     }   
     body {
         margin: 0;

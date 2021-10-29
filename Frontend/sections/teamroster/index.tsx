@@ -9,6 +9,7 @@ import {
   ModalLabel,
   ModalInput,
   ModalForm,
+  ModalHeader,
   ModalButton,
 } from './index.style'
 
@@ -124,9 +125,9 @@ const TeamRoster: React.FC<{}> = () => {
         </TeamRosterContent>
       </TeamRosterGroup>
       <Modal open={roster} onClose={() => onRosterModal()} center>
-        <RosterHeader>
+        <ModalHeader>
           <MemberLabel> {'NEW LEAGUE'}</MemberLabel>
-        </RosterHeader>
+        </ModalHeader>
         <ModalForm>
           <ModalLabel>{'Title : '}</ModalLabel>
           <ModalInput

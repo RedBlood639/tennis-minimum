@@ -27,7 +27,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     })
     Router.events.on('routeChangeError', (err) => {
       setLoading(false)
-      console.log(`error===>>${err}`)
     })
   }, [])
 

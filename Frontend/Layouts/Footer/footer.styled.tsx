@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { themeGet } from '@styled-system/theme-get'
 
 export const FooterWrapper = styled.div`
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   column-gap: 18px;

@@ -15,7 +15,14 @@ export const DetailLabel = styled.span`
   font-weight: 500;
 `
 export const DetailInput = styled.input`
-  height: 30px;
+  border-radius: 5%;
+  height: 40px;
+  border: 1px solid #495057;
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
 `
 export const DetailButton = styled.button`
   margin-right: 10px;
@@ -26,6 +33,7 @@ export const DetailButton = styled.button`
 `
 
 export const SaveButton = styled(DetailButton)`
+  margin-top: 20px;
   background-color: #1373b4;
   background-image: -webkit-linear-gradient(top, #5ca2e6, #1373b4 50%);
   border: 0.0625em solid #1373b4;
@@ -72,7 +80,7 @@ export const MemberState = styled.select`
   border-radius: 5%;
   height: 37px;
   border: transparent;
-  margin-right: 5px;
+  margin: 0 10px;
   &:focus {
     border-color: #80bdff;
     outline: 0;
