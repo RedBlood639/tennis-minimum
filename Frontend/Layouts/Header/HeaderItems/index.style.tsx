@@ -15,7 +15,7 @@ export const HeaderButton = styled.button`
   cursor: pointer;
 `
 export const SignInButton = styled(HeaderButton)`
-  background: ${themeGet('colors.green')};
+  background: ${themeGet('colors.primary')};
   border: 1px solid ${themeGet('colors.white')};
   color: ${themeGet('colors.white')};
   &:hover {
@@ -54,7 +54,7 @@ export const DropdownItems = styled.div<dropdiwnprops>`
   right: -10px;
   top: 38px;
   width: 200px;
-  background-color: ${themeGet('colors.green')};
+  background-color: ${themeGet('colors.primary')};
   border-radius: 0.4rem;
   box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.2);

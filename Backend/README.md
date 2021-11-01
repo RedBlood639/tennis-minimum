@@ -29,5 +29,3 @@ open cmd prompt
 # delete tables
 
     node migration.js down [table count number]
-
-albinorabbithunter@gmail.com

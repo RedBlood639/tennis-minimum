@@ -69,7 +69,7 @@ const Match: React.FC<{}> = () => {
         (response) => {
           if (response.data.success) {
             const filter = data.filter((item: any) => item.id !== id)
-            setData(data.splice(data))
+            setData(filter)
           }
         },
         (error) => {

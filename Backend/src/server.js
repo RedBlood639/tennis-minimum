@@ -13,6 +13,7 @@ const contact = require('./routes/contact.route')
 const match = require('./routes/match.route')
 const teamroster = require('./routes/teamroster.route')
 const members = require('./routes/members.route')
+const lineup = require('./routes/lineup.route')
 //Init App
 const app = express()
 
@@ -31,6 +32,7 @@ app.use('/contact', contact)
 app.use('/match', match)
 app.use('/teamroster', teamroster)
 app.use('/members', members)
+app.use('/lineup', lineup)
 
 app.all('*', (req, res, next) => {
   const error = new HttpException(404, 'Endpoint Not Found.')

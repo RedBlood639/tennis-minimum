@@ -21,6 +21,7 @@ export const MatchCardContent = styled.div`
   padding: 8px 3px;
   display: grid;
   grid-template-columns: 0.5fr 2fr 2fr 1fr 1fr 0fr 0fr;
+  transition-duration: 0.5s;
   @media screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;
@@ -34,6 +35,7 @@ export const MatchCardLabel = styled.span`
   line-break: anywhere;
   line-break: anywhere;
   border-right: 1px solid #cac0ba;
+  transition-duration: 0.5s;
   @media screen and (max-width: 1000px) {
     border-bottom: 1px solid #cac0ba;
   }
@@ -47,9 +49,13 @@ const MatchCardButton = styled.button`
   cursor: pointer;
 `
 export const DeleteButton = styled(MatchCardButton)`
-  background-color: #c7170a;
-  background-image: -webkit-linear-gradient(top, #ecb696, #c7170a 50%);
-  border: 0.0625em solid #c7170a;
+  background-color: ${themeGet('colors.red')};
+  background-image: -webkit-linear-gradient(
+    top,
+    #ecb696,
+    ${themeGet('colors.red')} 50%
+  );
+  border: 0.0625em solid ${themeGet('colors.red')};
 `
 export const UpdateButton = styled(MatchCardButton)`
   background-color: #298113;

@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
   z-index: 100;
-  background: ${themeGet('colors.green')};
+  background: ${themeGet('colors.primary')};
   padding: 0 20px;
   display: flex;
   align-items: 'center';
@@ -24,6 +24,7 @@ const HeaderLabel = styled.span`
 `
 export const HeaderLogoLabel = styled(HeaderLabel)`
   font-size: 25px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 586px) {
     display: none;
   }

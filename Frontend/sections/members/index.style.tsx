@@ -16,10 +16,10 @@ export const MemberHeader = styled.div`
   column-gap: 20px;
   margin-bottom: 20px;
   padding-bottom: 5px;
-  border-bottom: 1px solid ${themeGet('colors.green')};
+  border-bottom: 1px solid ${themeGet('colors.primary')};
 `
 export const MemberLabel = styled.span`
   font-size: 25px;
-  color: ${themeGet('colors.green')};
+  color: ${themeGet('colors.primary')};
   font-weight: 500;
 `

@@ -7,6 +7,7 @@ export const PanelLabel = styled.span`
   font-weight: 500;
 
   /* font-family: 'Font1'; */
+  transition-duration: 0.5s;
   font-size: 90px;
   @media screen and (max-width: 1240px) {
     font-size: 75px;

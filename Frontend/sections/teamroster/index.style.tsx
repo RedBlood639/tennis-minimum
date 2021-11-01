@@ -9,6 +9,7 @@ export const TeamRosterWrapper = styled.div`
 
 export const TeamRosterGroup = styled.div`
   width: 70%;
+  transition-duration: 0.5s;
   @media screen and (max-width: 1024px) {
     width: 80%;
   }
@@ -23,7 +24,7 @@ export const TeamRosterContent = styled.div`
 
 export const MemberLabel = styled.span`
   font-size: 25px;
-  color: ${themeGet('colors.green')};
+  color: ${themeGet('colors.primary')};
   font-weight: 500;
 `
 
@@ -31,14 +32,18 @@ export const TeamRosterButton = styled.button`
   color: ${themeGet('colors.white')};
   border-radius: 0.3rem;
   line-height: 1.5;
-  background-color: #1373b4;
-  background-image: -webkit-linear-gradient(top, #5ca2e6, #1373b4 50%);
-  border: 0.0625em solid #1373b4;
+  background-color: ${themeGet('colors.blue')};
+  background-image: -webkit-linear-gradient(
+    top,
+    #5ca2e6,
+    ${themeGet('colors.blue')} 50%
+  );
+  border: 0.0625em solid ${themeGet('colors.blue')};
   cursor: pointer;
   &:hover {
     background-color: #6eb5f9;
     background-image: -webkit-linear-gradient(top, #6eb5f9, #2b89cb 50%);
-    border: 0.0625em solid #1373b4;
+    border: 0.0625em solid ${themeGet('colors.blue')};
   }
 `
 
@@ -51,7 +56,7 @@ export const RosterHeader = styled.div`
   margin-top: 100px;
   padding-bottom: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid ${themeGet('colors.green')};
+  border-bottom: 1px solid ${themeGet('colors.primary')};
 `
 export const ModalHeader = styled.div`
   /* position: fixed; */
@@ -61,7 +66,7 @@ export const ModalHeader = styled.div`
   column-gap: 20px;
   margin: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid ${themeGet('colors.green')};
+  border-bottom: 1px solid ${themeGet('colors.primary')};
 `
 // modal
 export const ModalForm = styled.div`
@@ -84,6 +89,7 @@ export const ModalInput = styled.input`
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
   }
+  transition-duration: 0.5s;
   @media screen and (max-width: 600px) {
     width: 350px;
   }
@@ -101,13 +107,17 @@ export const ModalButton = styled.button`
   line-height: 1.5;
   width: 100%;
   padding: 0.4rem 1rem;
-  background-color: #1373b4;
-  background-image: -webkit-linear-gradient(top, #5ca2e6, #1373b4 50%);
-  border: 0.0625em solid #1373b4;
+  background-color: ${themeGet('colors.blue')};
+  background-image: -webkit-linear-gradient(
+    top,
+    #5ca2e6,
+    ${themeGet('colors.blue')} 50%
+  );
+  border: 0.0625em solid ${themeGet('colors.blue')};
   cursor: pointer;
   &:hover {
     background-color: #6eb5f9;
     background-image: -webkit-linear-gradient(top, #6eb5f9, #2b89cb 50%);
-    border: 0.0625em solid #1373b4;
+    border: 0.0625em solid ${themeGet('colors.blue')};
   }
 `

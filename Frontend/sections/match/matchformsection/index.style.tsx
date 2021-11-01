@@ -9,6 +9,7 @@ export const Form = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition-duration: 0.5s;
   @media screen and (max-width: 514px) {
     display: flex;
     flex-direction: column;
@@ -24,6 +25,7 @@ export const Input = styled.input`
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
   }
+  transition-duration: 0.5s;
   @media screen and (max-width: 514px) {
     width: 100%;
   }
@@ -47,6 +49,7 @@ export const FormContent = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   gap: 10px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 1000px) {
     display: flex;
     flex-direction: column;

@@ -39,6 +39,10 @@ const onLoginUser = async (req, res, next) => {
     throw new HttpException(401, 'Incorrect account.')
   }
 
+  if (result.user.isDisable === 0) {
+    throw new HttpException(401, 'this account was disabled.')
+  }
+
   const isMatch = await bcrypt.compare(req.body.password, result.user.password)
   if (!isMatch) {
     throw new HttpException(401, 'Incorrect password.')

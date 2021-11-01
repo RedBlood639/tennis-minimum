@@ -1,39 +1,49 @@
 import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
 
-export const TeamRosterWrapper = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.35);
+export const LineupCardWrapper = styled.div`
+  background-color: #ecebeb;
+  border: 1px solid gray;
+  margin-bottom: 5px;
+  padding: 10px 30px;
   border-radius: 0.3rem;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
-  margin-bottom: 10px;
   align-items: center;
-  background-color: #dfdfdf;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  @media screen and (max-width: 425px) {
+    flex-direction: column;
+    align-items: unset;
+  }
+`
+export const LineupCardForm = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  transition-duration: 0.5s;
+  @media screen and (max-width: 885px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+`
+export const LineupCardLabel = styled.span`
+  line-break: anywhere;
 `
 
-export const TeamRosterContent = styled.div`
-  cursor: pointer;
-  width: 100%;
-  padding: 8px 3px;
+export const No = styled(LineupCardLabel)`
+  color: ${themeGet('colors.red')};
 `
-export const TeamRosterLabel = styled.p<{ kind?: string }>`
-  margin: 2px;
-  margin-right: 20px;
-  font-size: 18px;
-  line-break: anywhere;
-  border-bottom: ${(props) =>
-    props.kind === 'title' ? '1px solid #9eca63;' : 'none'};
-`
-const TeamRosterButton = styled.button`
+export const LineupCardButton = styled.button`
+  transition-duration: 0.5s;
+  @media screen and (max-width: 425px) {
+    margin-top: 10px;
+  }
   margin-right: 10px;
   color: ${themeGet('colors.white')};
   border-radius: 0.3rem;
   line-height: 2.5;
   cursor: pointer;
-`
-
-export const DeleteButton = styled(TeamRosterButton)`
   background-color: ${themeGet('colors.red')};
   background-image: -webkit-linear-gradient(
     top,

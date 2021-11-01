@@ -9,6 +9,7 @@ export const ContactWrapper = styled.div`
   align-items: center;
   margin-top: 25px;
   background-color: floralwhite;
+  transition-duration: 0.5s;
   @media screen and (max-width: 768px) {
     width: 85%;
   }
@@ -18,6 +19,7 @@ export const ContactHeader = styled.span`
   font-size: 35px;
   margin-top: 50px;
   font-weight: 500;
+  transition-duration: 0.5s;
   @media screen and (max-width: 768px) {
     margin-top: 80px;
   }
@@ -27,7 +29,7 @@ export const ContactContent = styled.div`
   width: 100%;
   margin-top: 20px;
   padding: 20px;
-  background: ${themeGet('colors.green')};
+  background: ${themeGet('colors.primary')};
   border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
@@ -36,6 +38,7 @@ export const ContactMain = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 5px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 5px;
@@ -84,13 +87,17 @@ export const ContactButton = styled.button`
   font-size: 1rem;
   border-radius: 0.3rem;
   line-height: 1.5;
-  background-color: #1373b4;
-  background-image: -webkit-linear-gradient(top, #5ca2e6, #1373b4 50%);
-  border: 0.0625em solid #1373b4;
+  background-color: ${themeGet('colors.blue')};
+  background-image: -webkit-linear-gradient(
+    top,
+    #5ca2e6,
+    ${themeGet('colors.blue')} 50%
+  );
+  border: 0.0625em solid ${themeGet('colors.blue')};
   cursor: pointer;
   &:hover {
     background-color: #6eb5f9;
     background-image: -webkit-linear-gradient(top, #6eb5f9, #2b89cb 50%);
-    border: 0.0625em solid #1373b4;
+    border: 0.0625em solid ${themeGet('colors.blue')};
   }
 `

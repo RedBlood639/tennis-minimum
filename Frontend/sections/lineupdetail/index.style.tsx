@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
 
-export const LeagueWrapper = styled.div`
+export const LineupWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 100px;
@@ -23,7 +23,7 @@ export const MemberContent = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
 `
 
-export const LeagueHeader = styled.div`
+export const LineupHeader = styled.div`
   display: flex;
   justify-content: space-between;
   column-gap: 20px;
@@ -31,7 +31,7 @@ export const LeagueHeader = styled.div`
   padding-bottom: 5px;
   border-bottom: 1px solid ${themeGet('colors.primary')};
 `
-export const LeagueLabel = styled.span`
+export const LineupLabel = styled.span`
   font-size: 25px;
   color: ${themeGet('colors.primary')};
   font-weight: 500;

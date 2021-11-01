@@ -42,6 +42,7 @@ const HeaderItems: React.FC<{}> = () => {
 
   const onSignout = () => {
     toChangePath('/')
+    localStorage.removeItem('tennis')
   }
   return (
     <ItemgroupWrapper>
@@ -51,10 +52,13 @@ const HeaderItems: React.FC<{}> = () => {
             {'All Members'}
           </SignInButton>
           <SignInButton onClick={() => toChangePath('/league')}>
-            {'TeamRoster'}
+            {'League'}
           </SignInButton>
           <SignInButton onClick={() => toChangePath('/match')}>
-            {'Match'}
+            {'Match and Result'}
+          </SignInButton>
+          <SignInButton onClick={() => toChangePath('/lineup')}>
+            {'Weekly lineup'}
           </SignInButton>
         </>
       ) : (

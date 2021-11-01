@@ -7,7 +7,7 @@ export const FooterWrapper = styled.div`
   justify-content: center;
   column-gap: 18px;
   align-items: center;
-  background-color: ${themeGet('colors.green')};
+  background-color: ${themeGet('colors.primary')};
   height: 50px;
   width: 100%;
 `

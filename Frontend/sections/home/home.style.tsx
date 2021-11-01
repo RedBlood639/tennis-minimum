@@ -11,6 +11,7 @@ export const CardGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 20px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;

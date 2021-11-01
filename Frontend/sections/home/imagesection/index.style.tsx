@@ -28,6 +28,7 @@ export const ImageSectionLabel = styled.h1`
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   color: ${themeGet('colors.blue')};
   font-size: 65px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 1320px) {
     font-size: 50px;
   }

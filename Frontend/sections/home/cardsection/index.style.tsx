@@ -14,6 +14,7 @@ export const CardImage = styled.div`
 
 export const CardLavel = styled.span`
   font-size: 18px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 320px) {
     font-size: 14px;
   }

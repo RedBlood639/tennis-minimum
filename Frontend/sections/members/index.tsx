@@ -12,6 +12,7 @@ import MemberSection from './membersection'
 
 const Members: React.FC<{}> = () => {
   const [data, setData] = useState<any>([])
+  const [refresh, setRefresh] = useState<boolean>(false)
   useEffect(() => {
     apiClientwithToken(localStorage.getItem('tennis'))
       .get('/members')
@@ -27,8 +28,10 @@ const Members: React.FC<{}> = () => {
           toast.error(err.response.data.message)
         }
       })
-  }, [])
-
+  }, [refresh])
+  const onRefresh = () => {
+    setRefresh(!refresh)
+  }
   return (
     <MemberWrapper>
       <MembersGroup>
@@ -36,7 +39,7 @@ const Members: React.FC<{}> = () => {
           <MemberLabel>All Members.</MemberLabel>
         </MemberHeader>
         <MemberContent>
-          <MemberSection data={data} />
+          <MemberSection data={data} onRefresh={onRefresh} />
         </MemberContent>
       </MembersGroup>
     </MemberWrapper>

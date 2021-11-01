@@ -14,7 +14,7 @@ export const SentWrapper = styled.div`
 export const SentLabel = styled.span`
   font-weight: 500;
   font-size: 45px;
-
+  transition-duration: 0.5s;
   @media screen and (max-width: 425px) {
     font-size: 38px;
   }
@@ -25,6 +25,7 @@ export const SentLabel = styled.span`
 export const SentSubLabel = styled.span`
   font-weight: 400;
   font-size: 18px;
+  transition-duration: 0.5s;
   @media screen and (max-width: 320px) {
     font-size: 15px;
   }
