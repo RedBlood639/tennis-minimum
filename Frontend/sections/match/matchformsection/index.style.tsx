@@ -17,6 +17,13 @@ export const Form = styled.div`
 `
 export const Input = styled.input`
   height: 30px;
+  font-size: 18px;
+  border: 1px solid #495057;
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
   @media screen and (max-width: 514px) {
     width: 100%;
   }

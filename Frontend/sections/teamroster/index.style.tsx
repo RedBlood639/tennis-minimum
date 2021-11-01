@@ -75,6 +75,7 @@ export const ModalLabel = styled.span`
 export const ModalInput = styled.input`
   height: 35px;
   border-radius: 0.3rem;
+  font-size: 18px;
   margin-bottom: 5px;
   width: 500px;
   border: 1px solid #8d8f91;

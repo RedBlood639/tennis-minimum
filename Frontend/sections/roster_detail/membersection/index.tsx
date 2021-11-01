@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { apiClientwithToken } from '../../../utils/apiclient'
 import { MemberSectionWrapper, StyledTable, SaveButton } from './index.style'
 
-const MemberSection: React.FC<{ allmembers: any }> = ({ allmembers }) => {
+const MemberSection: React.FC<{ allmembers: any; onRefresh: Function }> = ({
+  allmembers,
+  onRefresh,
+}) => {
   const [selected, setSelected] = useState<Array<number>>([])
 
   const onSelectItem = (e: any, id: number) => {
@@ -23,6 +26,8 @@ const MemberSection: React.FC<{ allmembers: any }> = ({ allmembers }) => {
       .then((res) => {
         if (res.data.success) {
           toast.info(res.data.message)
+          onRefresh()
+          setSelected([])
         }
       })
       .catch((err) => {

@@ -15,6 +15,7 @@ export const AccountContent = styled.div`
 `
 export const AccountInput = styled.input`
   border-radius: 5%;
+  font-size: 18px;
   height: 40px;
   border: 1px solid #495057;
   &:focus {

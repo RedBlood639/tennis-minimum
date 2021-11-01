@@ -50,11 +50,25 @@ export const ContactLabel = styled.span`
 
 export const MessageBox = styled.textarea`
   height: 200px;
+  font-size: 16px;
+  border: 1px solid #495057;
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
 `
 export const FormInput = styled.input`
   width: 100%;
   height: 40px;
+  font-size: 18px;
   border-radius: 0.3rem;
+  border: 1px solid #495057;
+  &:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  }
 `
 export const ContactForm = styled.div`
   display: flex;

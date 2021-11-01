@@ -15,6 +15,7 @@ export const ProfileContent = styled.div`
 export const ProfileInput = styled.input`
   border-radius: 5%;
   height: 40px;
+  font-size: 18px;
   border: 1px solid #495057;
   &:focus {
     border-color: #80bdff;

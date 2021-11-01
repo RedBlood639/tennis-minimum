@@ -49,8 +49,8 @@ const onAddMembers = async (params) => {
 }
 
 const onGetMembers = async (params) => {
-  const sql = `SELECT * FROM users WHERE isDisable = 1`
   try {
+    const sql = `SELECT * FROM users WHERE isDisable = 1`
     const result = await DBConnection.query(sql)
     const sql_1 = `SELECT * FROM roster WHERE id = ?`
     const result_1 = await DBConnection.query(sql_1, [params.id])
@@ -69,17 +69,22 @@ const onGetMembers = async (params) => {
     })
 
     const sql_2 = `SELECT * FROM users WHERE id = ?`
-    const data_2 = []
-    await members.map(async (item) => {
-      const result_2 = await DBConnection.query(sql_2, [item])
-      data_2.push(result_2[0])
+
+    const unresolvedPromises = members.map(async (n) => {
+      const data = await DBConnection.query(sql_2, [n])
+      return data[0]
     })
+    const data_2 = await Promise.all(unresolvedPromises)
+
+    const sql_3 = `SELECT * FROM league WHERE rosterid = ?`
+    const result_3 = await DBConnection.query(sql_3, [result_1[0].id])
 
     return {
       state: true,
       allmembers: data_1,
       members: data_2,
       detail: result_1[0],
+      // leagues: result_3,
     }
   } catch (e) {
     console.log(e)
@@ -91,11 +96,39 @@ const onGetMembers = async (params) => {
     }
   }
 }
+
+const onRemoveMember = async (params) => {
+  try {
+    const sql_1 = `SELECT * FROM roster WHERE id = ?`
+    const result_1 = await DBConnection.query(sql_1, [params.rosterid])
+    let members = JSON.parse(result_1[0].members)
+    members.splice(members.indexOf(Number(params.userid)), 1)
+    //#
+    const sql_2 = `UPDATE roster SET members = ? WHERE id = ?`
+    await DBConnection.query(sql_2, [members, result_1[0].id])
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const onUpdateDetail = async (params) => {
+  try {
+    const sql = `UPDATE roster SET title = ?, position = ? WHERE id = ?`
+    await DBConnection.query(sql, [params.title, params.position, params.id])
+    return true
+  } catch (e) {
+    return false
+  }
+}
 /***********************************Export*******************************************/
 module.exports = {
   onCreateRoster,
   onGetRoster,
   onRemoveItem,
+  // #
   onAddMembers,
   onGetMembers,
+  onRemoveMember,
+  onUpdateDetail,
 }
