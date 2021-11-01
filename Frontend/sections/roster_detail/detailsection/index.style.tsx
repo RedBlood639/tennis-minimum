@@ -5,6 +5,9 @@ export const DetailWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
+  @media screen and (max-width: 794px) {
+    grid-template-columns: 1fr;
+  }
 `
 export const DetailForm = styled.div`
   display: flex;
@@ -45,6 +48,7 @@ export const DetailArea = styled.textarea`
 
 export const SaveButton = styled(DetailButton)`
   margin-top: 20px;
+  width: 100%;
   background-color: #1373b4;
   background-image: -webkit-linear-gradient(top, #5ca2e6, #1373b4 50%);
   border: 0.0625em solid #1373b4;
@@ -69,7 +73,6 @@ export const DeleteButton = styled(DetailButton)`
 export const DetailContent = styled.div`
   max-height: 350px;
   overflow: auto;
-  border-bottom: 1px solid black;
   border-radius: 0.3rem;
 `
 
@@ -86,6 +89,10 @@ export const MemeberWrapper = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 2.5fr 0.2fr 0.5fr 0.1fr 0fr;
   align-items: center;
+  @media screen and (max-width: 432px) {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
 `
 export const MemberState = styled.select`
   border-radius: 5%;
@@ -105,38 +112,11 @@ export const DetailContainer = styled.div`
   gap: 8px;
 `
 
-export const StyledLeagueCard = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.35);
-  border-radius: 0.5rem;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-`
-export const LeagueForm = styled.div`
-  padding-bottom: 5px;
-`
-export const LeagueLabel = styled.span`
-  line-break: anywhere;
-`
 export const LeagueInput = styled.input``
 const LeagueButton = styled.button`
   padding: 0.5rem 0.7rem;
   border-radius: 0.3rem;
   cursor: pointer;
-`
-
-export const AddButton = styled(LeagueButton)`
-  background: ${themeGet('colors.green')};
-  border: 1px solid ${themeGet('colors.white')};
-  color: ${themeGet('colors.white')};
-  &:hover {
-    background: ${themeGet('colors.white')};
-    color: ${themeGet('colors.black')};
-  }
 `
 
 export const LeagueHeaderLabel = styled.span`
@@ -150,34 +130,4 @@ export const LeagueHeader = styled.div`
   align-items: center;
   display: flex;
   border-bottom: 1px solid ${themeGet('colors.green')};
-`
-
-export const Content = styled.div``
-
-export const ModalHeader = styled.span`
-  font-size: 23px;
-  font-weight: 500;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-  color: ${themeGet('colors.green')};
-  border-bottom: 1px solid ${themeGet('colors.green')};
-`
-
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`
-
-export const ModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`
-
-export const ModalForm = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
 `

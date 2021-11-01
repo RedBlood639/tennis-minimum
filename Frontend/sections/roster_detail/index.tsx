@@ -10,7 +10,7 @@ import MemberSection from './membersection'
 import { apiClientwithToken } from '../../utils/apiclient'
 import { toast } from 'react-toastify'
 
-const RosterDetail: React.FC<{}> = () => {
+const RosterDetail: React.FC<{ rosterId: number }> = ({ rosterId }) => {
   const [allmembers, setAllmembers] = useState<any>([])
   const [members, setMembers] = useState<any>([])
   const [detail, setDetail] = useState<any>(null)
@@ -18,9 +18,10 @@ const RosterDetail: React.FC<{}> = () => {
 
   useEffect(() => {
     apiClientwithToken(localStorage.getItem('tennis'))
-      .get('/teamroster/member', { params: { id: 1 } })
+      .get('/teamroster/member', { params: { id: rosterId } })
       .then((res) => {
         if (res.data.success) {
+          console.log(res.data.item)
           setAllmembers(res.data.item.allmembers)
           setMembers(res.data.item.members)
           setDetail(res.data.item.detail)
@@ -44,11 +45,15 @@ const RosterDetail: React.FC<{}> = () => {
         <LeagueHeader>
           <LeagueLabel>All Members.</LeagueLabel>
         </LeagueHeader>
-        <MemberSection allmembers={allmembers} onRefresh={onRefresh} />
+        <MemberSection
+          allmembers={allmembers}
+          onRefresh={onRefresh}
+          rosterId={rosterId}
+        />
       </MembersGroup>
       <MembersGroup>
         <LeagueHeader>
-          <LeagueLabel>Teams Roster Detail.</LeagueLabel>
+          <LeagueLabel>Information.</LeagueLabel>
         </LeagueHeader>
         <DetailSection
           members={members}

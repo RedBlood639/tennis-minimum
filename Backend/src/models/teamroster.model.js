@@ -39,9 +39,17 @@ const onRemoveItem = async (params) => {
 }
 
 const onAddMembers = async (params) => {
-  const sql = `UPDATE roster SET members = ? WHERE id = ?`
   try {
-    await DBConnection.query(sql, [params.members, params.id])
+    const sql_1 = `SELECT members FROM roster WHERE id = ?`
+    const result_1 = await DBConnection.query(sql_1, [params.id])
+    const members = JSON.parse(result_1[0].members)
+
+    await params.members.map((item) => {
+      members.push(item)
+    })
+
+    const sql_2 = `UPDATE roster SET members = ? WHERE id = ?`
+    await DBConnection.query(sql_2, [members, params.id])
     return true
   } catch (e) {
     return false
@@ -76,15 +84,11 @@ const onGetMembers = async (params) => {
     })
     const data_2 = await Promise.all(unresolvedPromises)
 
-    const sql_3 = `SELECT * FROM league WHERE rosterid = ?`
-    const result_3 = await DBConnection.query(sql_3, [result_1[0].id])
-
     return {
       state: true,
       allmembers: data_1,
       members: data_2,
       detail: result_1[0],
-      // leagues: result_3,
     }
   } catch (e) {
     console.log(e)
@@ -121,6 +125,7 @@ const onUpdateDetail = async (params) => {
     return false
   }
 }
+
 /***********************************Export*******************************************/
 module.exports = {
   onCreateRoster,
@@ -131,4 +136,5 @@ module.exports = {
   onGetMembers,
   onRemoveMember,
   onUpdateDetail,
+  // #
 }

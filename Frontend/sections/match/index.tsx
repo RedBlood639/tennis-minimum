@@ -44,8 +44,8 @@ const Match: React.FC<{}> = () => {
     onGetItems()
   }, [])
 
-  const onGetItems = async () => {
-    await apiClientwithToken(localStorage.getItem('tennis'))
+  const onGetItems = () => {
+    apiClientwithToken(localStorage.getItem('tennis'))
       .get('/match')
       .then(
         (response) => {

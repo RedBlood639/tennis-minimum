@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { toast } from 'react-toastify'
 import { apiClientwithToken } from '../../utils/apiclient'
-import { AuthContext } from '../../contexts/Auth/auth.context'
 import {
   AccountButton,
   AccountContent,
@@ -13,13 +12,11 @@ import {
 } from './index.style'
 import { isEmpty } from '../../utils/isEmpty'
 const Account: React.FC<{}> = () => {
-  const {
-    loadState: { c_email, token },
-  } = useContext<any>(AuthContext)
-
   const [oldPass, setOldPass] = useState<string>('')
   const [newPass, setNewPass] = useState<string>('')
   const [confirmPass, setConfirmPass] = useState<string>('')
+
+  console.log(1)
 
   useEffect(() => {
     console.log(token + 'dss')

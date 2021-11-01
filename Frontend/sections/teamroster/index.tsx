@@ -104,7 +104,7 @@ const TeamRoster: React.FC<{}> = () => {
     <TeamRosterWrapper>
       <TeamRosterGroup>
         <RosterHeader>
-          <MemberLabel>All TeamRoster.</MemberLabel>
+          <MemberLabel>All League.</MemberLabel>
           <TeamRosterButton onClick={() => onRosterModal()}>
             {'New Add'}
           </TeamRosterButton>

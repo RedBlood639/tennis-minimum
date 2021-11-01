@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { apiClientwithToken } from '../../../utils/apiclient'
-import { MemberSectionWrapper, StyledTable, SaveButton } from './index.style'
+import {
+  MemberSectionWrapper,
+  StyledTable,
+  SaveButton,
+  TableContent,
+} from './index.style'
 
-const MemberSection: React.FC<{ allmembers: any; onRefresh: Function }> = ({
-  allmembers,
-  onRefresh,
-}) => {
+const MemberSection: React.FC<{
+  allmembers: any
+  onRefresh: Function
+  rosterId: number
+}> = ({ allmembers, onRefresh, rosterId }) => {
   const [selected, setSelected] = useState<Array<number>>([])
 
   const onSelectItem = (e: any, id: number) => {
@@ -22,7 +28,7 @@ const MemberSection: React.FC<{ allmembers: any; onRefresh: Function }> = ({
 
   const onAddMembers = () => {
     apiClientwithToken(localStorage.getItem('tennis'))
-      .post('/teamroster/member', { members: selected, id: 1 })
+      .post('/teamroster/member', { members: selected, id: rosterId })
       .then((res) => {
         if (res.data.success) {
           toast.info(res.data.message)
@@ -41,31 +47,37 @@ const MemberSection: React.FC<{ allmembers: any; onRefresh: Function }> = ({
 
   return (
     <MemberSectionWrapper>
-      <StyledTable>
-        <thead>
-          <tr>
-            <td>#</td>
-            <td>Name</td>
-            <td>Level</td>
-          </tr>
-        </thead>
-        <tbody>
-          {allmembers.map((item: any) => {
-            return (
-              <tr key={item.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    onChange={(e) => onSelectItem(e, item.id)}
-                  />
-                </td>
-                <td>{item.firstname + ' ' + item.lastname}</td>
-                <td>{item.skill}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </StyledTable>
+      <TableContent>
+        <StyledTable>
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>Name</td>
+              <td>Email</td>
+              <td>Phone</td>
+              <td>Level</td>
+            </tr>
+          </thead>
+          <tbody>
+            {allmembers.map((item: any) => {
+              return (
+                <tr key={item.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      onChange={(e) => onSelectItem(e, item.id)}
+                    />
+                  </td>
+                  <td>{item.firstname + ' ' + item.lastname}</td>
+                  <td>{item.email}</td>
+                  <td>{item.phone || '-'}</td>
+                  <td>{item.skill}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </StyledTable>
+      </TableContent>
       <SaveButton onClick={onAddMembers}>{'Add Members'}</SaveButton>
     </MemberSectionWrapper>
   )

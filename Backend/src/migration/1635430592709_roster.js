@@ -4,7 +4,7 @@ module.exports = {
           id              INT PRIMARY KEY AUTO_INCREMENT,
           title           VARCHAR(255) NOT NULL,  
           position        VARCHAR(255) NOT NULL,
-          members         TEXT DEFAULT '[]',
+          members         TEXT,
           isDisable       BOOLEAN NOT NULL DEFAULT TRUE,
           created_on      DATETIME NOT NULL DEFAULT NOW(),
           updated_on      DATETIME NOT NULL DEFAULT NOW(),

@@ -13,7 +13,6 @@ import GlobalStyle from '../site-settings/global'
 import { SentMessageProvider } from '../contexts/MessageSent/sentmessage.provider'
 import 'react-responsive-modal/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
-import { AuthProvider } from '../contexts/Auth/auth.provider'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [loading, setLoading] = useState(false)
@@ -32,17 +31,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeProvider theme={DefaultTheme}>
-      <AuthProvider>
-        <PageProvider>
-          <SentMessageProvider>
-            <AppLayout>
-              {loading ? <PageLoader /> : <Component {...pageProps} />}
-            </AppLayout>
-            <GlobalStyle />
-            <ToastContainer />
-          </SentMessageProvider>
-        </PageProvider>
-      </AuthProvider>
+      <PageProvider>
+        <SentMessageProvider>
+          <AppLayout>
+            {loading ? <PageLoader /> : <Component {...pageProps} />}
+          </AppLayout>
+          <GlobalStyle />
+          <ToastContainer />
+        </SentMessageProvider>
+      </PageProvider>
     </ThemeProvider>
   )
 }

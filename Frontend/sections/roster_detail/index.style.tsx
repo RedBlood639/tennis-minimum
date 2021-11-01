@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
 
 export const LeagueWrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   margin-top: 100px;
   gap: 50px;
-  width: 95%;
-  grid-template-columns: 1fr 3fr;
+  width: 80%;
   /* @media screen and (max-width: 998px) {
     flex-direction: column;
     margin: 100px 150px 0px 150px;
@@ -48,4 +48,9 @@ export const LeagueLabel = styled.span`
 
 export const MembersGroup = styled.div`
   width: 100%;
+  border-radius: 0.5rem;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `

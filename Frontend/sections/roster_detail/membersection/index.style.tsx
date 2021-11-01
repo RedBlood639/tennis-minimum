@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import themeGet from '@styled-system/theme-get'
 
 export const MemberSectionWrapper = styled.div`
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,4 +51,11 @@ export const SaveButton = styled.button`
     background-image: -webkit-linear-gradient(top, #6eb5f9, #2b89cb 50%);
     border: 0.0625em solid #1373b4;
   }
+  @media screen and (max-width: 432px) {
+    padding: 0.3rem 1rem;
+  }
+`
+
+export const TableContent = styled.div`
+  overflow: auto;
 `

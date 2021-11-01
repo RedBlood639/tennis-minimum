@@ -6,10 +6,8 @@ import { FormProps } from '../formsection/type'
 import { apiClientwithToken } from '../../utils/apiclient'
 import { toast } from 'react-toastify'
 import { isEmpty } from '../../utils/isEmpty'
-import { AuthContext } from '../../contexts/Auth/auth.context'
 
 const SignIn: React.FC<{}> = () => {
-  const { loadDispatch } = useContext<any>(AuthContext)
   const router = useRouter()
   const [email, setEmail] = useState<string>('')
   const [firstname, setFirstName] = useState<string>('')
@@ -85,11 +83,7 @@ const SignIn: React.FC<{}> = () => {
       .then(
         (response) => {
           if (response.data.success) {
-            loadDispatch({
-              type: true,
-              token: response.data.token,
-              c_email: response.data.email,
-            })
+            localStorage.setItem('tennis', response.data.token)
             toast.info(response.data.message)
             router.push('/panel')
           }

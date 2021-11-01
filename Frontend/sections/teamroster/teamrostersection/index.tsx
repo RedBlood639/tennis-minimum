@@ -13,7 +13,7 @@ const TeamRosterSection: React.FC<{ item: any; onRemoveItem: Function }> = ({
 }) => {
   const router = useRouter()
   const toChangePath = () => {
-    router.push('/roster_detail')
+    router.push({ pathname: '/league_detail', query: { id: 1 } })
   }
 
   return (

@@ -13,19 +13,9 @@ import {
   SaveButton,
   DetailContainer,
   DetailArea,
-  StyledLeagueCard,
   LeagueHeader,
   LeagueHeaderLabel,
-  LeagueForm,
-  LeagueLabel,
-  AddButton,
-  Content,
-  ModalHeader,
-  ModalContent,
-  ModalContainer,
-  ModalForm,
 } from './index.style'
-import Modal from 'react-responsive-modal'
 
 const MemberCard: React.FC<{
   item: any
@@ -63,30 +53,6 @@ const MemberCard: React.FC<{
   )
 }
 
-const LeagueCard: React.FC<{}> = ({}) => {
-  return (
-    <StyledLeagueCard>
-      <Content>
-        <LeagueForm>
-          <LeagueLabel>{'Position : '}</LeagueLabel>
-          <LeagueLabel>adddddddddddddddddddd</LeagueLabel>
-        </LeagueForm>
-        <LeagueForm>
-          <LeagueLabel>{'Date : '}</LeagueLabel>
-          <LeagueLabel>asd</LeagueLabel>
-        </LeagueForm>
-        <LeagueForm>
-          <LeagueLabel>{'Time : '}</LeagueLabel>
-          <LeagueLabel>as</LeagueLabel>
-        </LeagueForm>
-      </Content>
-      <Content>
-        <DeleteButton>{'Delete'}</DeleteButton>
-      </Content>
-    </StyledLeagueCard>
-  )
-}
-
 const DetailSection: React.FC<{
   members: any
   detail: any
@@ -94,7 +60,6 @@ const DetailSection: React.FC<{
 }> = ({ members, detail, onRefresh }) => {
   const [title, setTitle] = useState<string>('')
   const [position, setPosition] = useState<string>('  ')
-  const [open, setOpen] = useState<boolean>(false)
 
   useEffect(() => {
     setTitle(detail === null ? '' : detail.title)
@@ -128,6 +93,9 @@ const DetailSection: React.FC<{
   return (
     <DetailWrapper>
       <DetailContainer>
+        <LeagueHeader>
+          <LeagueHeaderLabel>{'League Detail : '}</LeagueHeaderLabel>
+        </LeagueHeader>
         <DetailForm>
           <DetailLabel>{'Title : '}</DetailLabel>
           <DetailInput
@@ -146,50 +114,25 @@ const DetailSection: React.FC<{
           <SaveButton onClick={onSave}>{'Save'}</SaveButton>
         </DetailForm>
         <br />
-        <DetailForm>
-          <DetailLabel>{'Members : '}</DetailLabel>
-          <DetailContent>
-            {members.map((item: any, index: number) => {
-              return (
-                <MemberCard
-                  id={detail === null ? 0 : detail.id}
-                  key={index}
-                  item={item}
-                  index={index + 1}
-                  onRefresh={onRefresh}
-                ></MemberCard>
-              )
-            })}
-          </DetailContent>
-        </DetailForm>
       </DetailContainer>
       <DetailContainer>
         <LeagueHeader>
-          <LeagueHeaderLabel>{'All League'}</LeagueHeaderLabel>
-          <AddButton onClick={() => setOpen(true)}>{'ADD'}</AddButton>
+          <LeagueHeaderLabel>{'Roster : '}</LeagueHeaderLabel>
         </LeagueHeader>
-        <LeagueCard></LeagueCard>
+        <DetailContent>
+          {members.map((item: any, index: number) => {
+            return (
+              <MemberCard
+                id={detail === null ? 0 : detail.id}
+                key={index}
+                item={item}
+                index={index + 1}
+                onRefresh={onRefresh}
+              ></MemberCard>
+            )
+          })}
+        </DetailContent>
       </DetailContainer>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <ModalContainer>
-          <ModalHeader>{'NEW LEAGUE'}</ModalHeader>
-          <ModalContent>
-            <ModalForm>
-              <MemberLabel>{'Position : '}</MemberLabel>
-              <DetailInput />
-            </ModalForm>
-            <ModalForm>
-              <MemberLabel>{'Date : '}</MemberLabel>
-              <DetailInput type="date" />
-            </ModalForm>
-            <ModalForm>
-              <MemberLabel>{'Time : '}</MemberLabel>
-              <DetailInput type="time" />
-            </ModalForm>
-          </ModalContent>
-        </ModalContainer>
-        <AddButton>{'Save'}</AddButton>
-      </Modal>
     </DetailWrapper>
   )
 }

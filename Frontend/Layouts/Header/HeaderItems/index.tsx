@@ -9,16 +9,16 @@ import {
   DropdownItems,
   DropdownWrapper,
 } from './index.style'
-import { AuthContext } from '../../../contexts/Auth/auth.context'
 
 const HeaderItems: React.FC<{}> = () => {
-  const {
-    loadState: { login },
-    loadDispatch,
-  } = useContext<any>(AuthContext)
+  const router = useRouter()
   const dropMenuRef = useRef(null)
   const [hide, setHide] = useState<boolean>(false)
-  const router = useRouter()
+  const [login, setLogin] = useState<boolean>(false)
+
+  useEffect(() => {
+    setLogin(localStorage.getItem('tennis') === null ? false : true)
+  })
   const toChangePath = (href: string) => {
     router.push(href)
   }
@@ -41,7 +41,6 @@ const HeaderItems: React.FC<{}> = () => {
   }
 
   const onSignout = () => {
-    loadDispatch({ type: false })
     toChangePath('/')
   }
   return (
@@ -51,7 +50,7 @@ const HeaderItems: React.FC<{}> = () => {
           <SignInButton onClick={() => toChangePath('/members')}>
             {'All Members'}
           </SignInButton>
-          <SignInButton onClick={() => toChangePath('/teamroster')}>
+          <SignInButton onClick={() => toChangePath('/league')}>
             {'TeamRoster'}
           </SignInButton>
           <SignInButton onClick={() => toChangePath('/match')}>

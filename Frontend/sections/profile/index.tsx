@@ -28,14 +28,14 @@ const Profile: React.FC<{}> = () => {
       .get('/profile')
       .then((res) => {
         if (res.data.success) {
-          setFirstName(res.data.item.firstname)
-          setClub(res.data.item.club)
-          setLastName(res.data.item.lastname)
-          setSkill(res.data.item.skill)
-          setGender(res.data.item.gender)
-          setZipCode(res.data.item.zipcode)
-          setPhone(res.data.item.phone)
-          setBirth(res.data.item.birth)
+          setFirstName(res.data.item.firstname || '')
+          setClub(res.data.item.club || '')
+          setLastName(res.data.item.lastname || '')
+          setSkill(res.data.item.skill || '')
+          setGender(res.data.item.gender || '')
+          setZipCode(res.data.item.zipcode || '')
+          setPhone(res.data.item.phone || '')
+          setBirth(res.data.item.birth || '')
         }
       })
       .catch((err) => {
@@ -87,14 +87,14 @@ const Profile: React.FC<{}> = () => {
           <ProfileLabel>{'First Name'}</ProfileLabel>
           <ProfileInput
             value={firstname}
-            onChange={(e: any) => setFirstName(e.target.value)}
+            onChange={(e: any) => setFirstName(e.target.value.trim())}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'Last Name'}</ProfileLabel>
           <ProfileInput
             value={lastname}
-            onChange={(e: any) => setLastName(e.target.value)}
+            onChange={(e: any) => setLastName(e.target.value.trim())}
           />
         </ProfileForm>
         <ProfileForm>
@@ -118,7 +118,7 @@ const Profile: React.FC<{}> = () => {
           <ProfileLabel>{'Home Club'}</ProfileLabel>
           <ProfileInput
             value={club}
-            onChange={(e: any) => setClub(e.target.value)}
+            onChange={(e: any) => setClub(e.target.value.trim())}
           />
         </ProfileForm>
         <ProfileForm>
@@ -135,21 +135,21 @@ const Profile: React.FC<{}> = () => {
           <ProfileLabel>{'Zip Code'}</ProfileLabel>
           <ProfileInput
             value={zipcode}
-            onChange={(e: any) => setZipCode(e.target.value)}
+            onChange={(e: any) => setZipCode(e.target.value.trim())}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'phone Number'}</ProfileLabel>
           <ProfileInput
             value={phone}
-            onChange={(e: any) => setPhone(e.target.value)}
+            onChange={(e: any) => setPhone(e.target.value.trim())}
           />
         </ProfileForm>
         <ProfileForm>
           <ProfileLabel>{'Birth Year'}</ProfileLabel>
           <ProfileInput
             value={birth}
-            onChange={(e: any) => setBirth(e.target.value)}
+            onChange={(e: any) => setBirth(e.target.value.trim())}
           />
         </ProfileForm>
       </ProfileContent>
