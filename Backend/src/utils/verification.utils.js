@@ -60,21 +60,21 @@ const Sendsmtp = async (email, type, random) => {
           <p>${random}</p>`,
     }
     // ### Test smtp URL
-    console.log(link, mailOption)
-    return {
-      state: true,
-    }
-    // await Transportsmtp.sendMail(mailOption, (error, response) => {
-    //   if (error) {
-    //     return {
-    //       state: false,
-    //     };
-    //   } else {
-    //     return {
-    //       state: true,
-    //     };
-    //   }
-    // });
+    // console.log(link, mailOption)
+    // return {
+    //   state: true,
+    // }
+    await Transportsmtp.sendMail(mailOption, (error, response) => {
+      if (error) {
+        return {
+          state: false,
+        }
+      } else {
+        return {
+          state: true,
+        }
+      }
+    })
   } catch (e) {
     console.log(e)
     return {
