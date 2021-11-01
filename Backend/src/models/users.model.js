@@ -71,6 +71,36 @@ const onUpdateAccount = async (params) => {
     return false
   }
 }
+
+const onForgot = async (params) => {
+  const sql = `UPDATE users SET password = ? WHERE email = ?`
+  try {
+    await DBConnection.query(sql, [params.password, params.email])
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+const onVerify = async (params) => {
+  try {
+    const sql_1 = `SELECT * FROM users WHERE email= ?`
+    const result = await DBConnection.query(sql_1, [params.email])
+    return { state: true, item: result[0] }
+  } catch (e) {
+    return { state: false, item: null }
+  }
+}
+
+const onVerifyUpdate = async (params) => {
+  const sql_2 = `UPDATE users SET code = ? WHERE email = ?`
+  try {
+    await DBConnection.query(sql_2, [22222, params.email])
+    return true
+  } catch (e) {
+    return false
+  }
+}
 /***********************************Export*******************************************/
 module.exports = {
   isEmptyUser,
@@ -80,4 +110,8 @@ module.exports = {
   onGetProgile,
   //
   onUpdateAccount,
+  onForgot,
+  //
+  onVerify,
+  onVerifyUpdate,
 }

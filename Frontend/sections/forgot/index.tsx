@@ -4,6 +4,10 @@ import { ForgotWrapper, ForgotButton, ForgotHeaderLabel } from './index.style'
 import { FormProps } from '../formsection/type'
 import FormSection from '../formsection'
 import { SentMessageContext } from '../../contexts/MessageSent/sentmessage.context'
+import { apiClientwithToken } from '../../utils/apiclient'
+import { toast } from 'react-toastify'
+import { validateEmail } from '../../utils/validateemail'
+import { isEmpty } from '../../utils/isEmpty'
 const Forgot: React.FC<{}> = () => {
   const router = useRouter()
   const [email, setEmail] = useState<string>('')
@@ -20,9 +24,31 @@ const Forgot: React.FC<{}> = () => {
   ]
 
   const sentMessage = () => {
-    loadDispatch({ type: 'forgot' })
-    router.push('/sent')
+    if (isEmpty(email)) {
+      return toast.error('Please input email.')
+    }
+
+    if (!validateEmail(email)) {
+      return toast.error('Please input correct email.')
+    }
+
+    apiClientwithToken(localStorage.getItem('tennis'))
+      .post('/users/forgot', { email })
+      .then((res) => {
+        if (res.data.success) {
+          loadDispatch({ type: 'forgot' })
+          router.push('/sent')
+        }
+      })
+      .catch((err) => {
+        if (err.response.status == 404) {
+          toast.error('Server Disconected.')
+        } else {
+          toast.error(err.response.data.message)
+        }
+      })
   }
+
   return (
     <ForgotWrapper>
       <ForgotHeaderLabel>{'Forgot your password?'}</ForgotHeaderLabel>

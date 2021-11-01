@@ -11,6 +11,8 @@ import Link from 'next/link'
 import { apiClientwithToken } from '../../utils/apiclient'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
+import { isEmpty } from '../../utils/isEmpty'
+import { validateEmail } from '../../utils/validateemail'
 
 const SignIn: React.FC<{}> = () => {
   const router = useRouter()
@@ -35,6 +37,15 @@ const SignIn: React.FC<{}> = () => {
   ]
 
   const onSave = () => {
+    if (isEmpty(email)) {
+      return toast.error('Please input the email.')
+    }
+    if (!validateEmail(email)) {
+      return toast.error('Please input correct email.')
+    }
+    if (isEmpty(password)) {
+      return toast.error('Please input the password.')
+    }
     apiClientwithToken(localStorage.getItem('tennis'))
       .post('/users/siginin', {
         email,

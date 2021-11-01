@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import { apiClientwithToken } from '../../utils/apiclient'
 import { isEmpty } from '../../utils/isEmpty'
+import { validateEmail } from '../../utils/validateemail'
 import {
   ContactWrapper,
   ContactHeader,
@@ -25,6 +26,9 @@ const Contact: React.FC<{}> = () => {
     }
     if (isEmpty(email1)) {
       return toast.error('Pease input your email.')
+    }
+    if (!validateEmail(email1)) {
+      return toast.error('Pleae input correct email.')
     }
     if (isEmpty(email2)) {
       return toast.error('Pease confirm your email.')

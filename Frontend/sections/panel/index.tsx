@@ -4,7 +4,7 @@ const Panel: React.FC<{}> = () => {
   return (
     <PanelWrapper>
       <PanelContent>
-        <PanelLabel>{'Welcome.'}</PanelLabel>
+        <PanelLabel>{'Welcome Tennis Players.'}</PanelLabel>
       </PanelContent>
     </PanelWrapper>
   )

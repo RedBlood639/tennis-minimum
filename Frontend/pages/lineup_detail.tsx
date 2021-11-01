@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRouter } from 'next/router'
 import { metaData } from '../site-settings/metadata'
 import { SEO } from '../components/Seo/seo'

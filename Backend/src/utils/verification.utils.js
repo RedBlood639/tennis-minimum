@@ -34,9 +34,9 @@ const Sendsmtp = async (email, type, random) => {
   try {
     token = await hashToken({ random, email })
     if (type === 'signup') {
-      link = process.env.CLIENTURL + `/setup/verify/${token}`
+      link = process.env.CLIENTURL + `/verify?token=${token}`
     } else {
-      link = process.env.CLIENTURL + `/setup/password/${token}`
+      link = ''
     }
     const mailOption = {
       to: email,
@@ -55,9 +55,9 @@ const Sendsmtp = async (email, type, random) => {
         <a href="${link}">Click here to verify</a>`
           : type === 'contact'
           ? `<h2>Description</h2><p>${random}</p>`
-          : `To reset your password, The link will self-destruct after 1 hour.
+          : `To reset your password, Your Password is.
           <br>
-          <a href="${link}">Reset your password</a>`,
+          <p>${random}</p>`,
     }
     // ### Test smtp URL
     console.log(link, mailOption)
@@ -76,6 +76,7 @@ const Sendsmtp = async (email, type, random) => {
     //   }
     // });
   } catch (e) {
+    console.log(e)
     return {
       state: false,
     }

@@ -6,7 +6,8 @@ import { FormProps } from '../formsection/type'
 import { apiClientwithToken } from '../../utils/apiclient'
 import { toast } from 'react-toastify'
 import { isEmpty } from '../../utils/isEmpty'
-
+import { validateEmail } from '../../utils/validateemail'
+import { SentMessageContext } from '../../contexts/MessageSent/sentmessage.context'
 const SignIn: React.FC<{}> = () => {
   const router = useRouter()
   const [email, setEmail] = useState<string>('')
@@ -14,6 +15,8 @@ const SignIn: React.FC<{}> = () => {
   const [lastname, setLastName] = useState<string>('')
   const [password1, setPassword1] = useState<string>('')
   const [password2, setPassword2] = useState<string>('')
+  const { loadDispatch } = useContext<any>(SentMessageContext)
+
   const data: FormProps[] = [
     {
       label: 'Email',
@@ -56,6 +59,9 @@ const SignIn: React.FC<{}> = () => {
     if (isEmpty(email)) {
       return toast.error('Please input Email.')
     }
+    if (!validateEmail(email)) {
+      return toast.error('Pleae input correct email.')
+    }
     if (isEmpty(firstname)) {
       return toast.error('Please input FirstName.')
     }
@@ -65,9 +71,10 @@ const SignIn: React.FC<{}> = () => {
     if (isEmpty(password1)) {
       return toast.error('Please input Password.')
     }
-    // if (password1.trim().length < 8) {
-    //   return toast.error('Password should more 8 charaters.')
-    // }
+    if (password1.trim().length < 8) {
+      return toast.error('Password should more 8 charaters.')
+    }
+
     if (password1.trim() !== password2.trim()) {
       return toast.error("Password didn't matched.")
     }
@@ -83,9 +90,8 @@ const SignIn: React.FC<{}> = () => {
       .then(
         (response) => {
           if (response.data.success) {
-            localStorage.setItem('tennis', response.data.token)
-            toast.info(response.data.message)
-            router.push('/panel')
+            loadDispatch({ type: 'verify' })
+            router.push('/sent')
           }
         },
         (error) => {

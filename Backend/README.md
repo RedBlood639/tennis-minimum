@@ -28,4 +28,4 @@ open cmd prompt
 
 # delete tables
 
-    node migration.js down [table count number]
+    node migration.js down [5 || table count number]

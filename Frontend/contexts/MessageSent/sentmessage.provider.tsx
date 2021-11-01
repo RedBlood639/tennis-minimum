@@ -10,6 +10,22 @@ function reducer(state: any, action: any) {
       return {
         kind: 'Forgot password confirmation',
       }
+    case 'verify':
+      return {
+        kind: 'Please confirm your account.',
+      }
+    case 'already':
+      return {
+        kind: 'This account already confirmed.',
+      }
+    case 'confirmed':
+      return {
+        kind: 'The account was successfully verified.',
+      }
+    case 'error':
+      return {
+        kind: 'The verification is incorrect.',
+      }
     default:
       return state
   }
