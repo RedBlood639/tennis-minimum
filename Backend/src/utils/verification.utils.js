@@ -1,19 +1,5 @@
-const nodemailer = require('nodemailer')
-const smtpTransport = require('nodemailer-smtp-transport')
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
-dotenv.config()
-// #
-const Transportsmtp = nodemailer.createTransport(
-  smtpTransport({
-    service: 'Gmail',
-    auth: {
-      user: process.env.USER_EMAIL,
-      pass: process.env.USER_PASS,
-    },
-  }),
-)
-
+const transporter = require('./transporter')
 const hashToken = async (params) => {
   const token = await jwt.sign(
     {
@@ -38,7 +24,8 @@ const Sendsmtp = async (email, type, random) => {
     } else {
       link = ''
     }
-    const mailOption = {
+
+    const mailOptions = {
       to: email,
       subject:
         type == 'signup'
@@ -59,24 +46,17 @@ const Sendsmtp = async (email, type, random) => {
           <br>
           <p>${random}</p>`,
     }
-    // ### Test smtp URL
-    // console.log(link, mailOption)
-    // return {
-    //   state: true,
-    // }
-    await Transportsmtp.sendMail(mailOption, (error, response) => {
-      if (error) {
-        return {
-          state: false,
-        }
-      } else {
-        return {
-          state: true,
-        }
-      }
-    })
+    await transporter
+      .sendMail(mailOptions)
+      .then(function (email) {
+        res.status(200).json({ success: true, msg: 'Mail sent' })
+      })
+      .catch(function (exception) {
+        console.log(exception)
+        res.status(200).json({ success: false, msg: exception })
+      })
+    return true
   } catch (e) {
-    console.log(e)
     return {
       state: false,
     }
