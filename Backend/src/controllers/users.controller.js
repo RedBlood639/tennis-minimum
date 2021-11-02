@@ -1,6 +1,6 @@
 const HttpException = require('../middleware/HttpException.middleware')
 const UserModel = require('../models/users.model')
-const { Sendsmtp } = require('../utils/verification.utils')
+// const { Sendsmtp } = require('../utils/verification.utils')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
@@ -25,10 +25,10 @@ const onCreateUser = async (req, res, next) => {
     throw new HttpException(500, 'Something went wrong.')
   }
 
-  const rand = await Sendsmtp(req.body.email, 'signup', code)
-  if (!rand.state) {
-    throw new HttpException(500, 'Something went wrong.')
-  }
+  // const rand = await Sendsmtp(req.body.email, 'signup', code)
+  // if (!rand.state) {
+  //   throw new HttpException(500, 'Something went wrong.')
+  // }
 
   res.send({ success: true, message: 'Success !' })
 }
@@ -92,10 +92,10 @@ const onForgot = async (req, res) => {
     throw new HttpException(500, `Something went wrong.`)
   }
 
-  const rand = await Sendsmtp(req.body.email, 'forgot', code)
-  if (!rand.state) {
-    throw new HttpException(500, 'Something went wrong.')
-  }
+  // const rand = await Sendsmtp(req.body.email, 'forgot', code)
+  // if (!rand.state) {
+  //   throw new HttpException(500, 'Something went wrong.')
+  // }
 
   res.send({ success: true })
 }
