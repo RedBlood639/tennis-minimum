@@ -1,5 +1,37 @@
 const jwt = require('jsonwebtoken')
-const transporter = require('./transporter')
+const nodemailer = require('nodemailer')
+const { google } = require('googleapis')
+const OAuth2 = google.auth.OAuth2
+const dotenv = require('dotenv')
+dotenv.config()
+
+const oauth2Client = new OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRETE,
+  'https://developers.google.com/oauthplayground',
+)
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.RRESH_TOKEN,
+})
+
+const accessToken = oauth2Client.getAccessToken()
+
+const smtpTransport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    type: 'OAuth2',
+    user: process.env.USER_EMAIL,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRETE,
+    refreshToken: process.env.RRESH_TOKEN,
+    accessToken: accessToken,
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+})
+
 const hashToken = async (params) => {
   const token = await jwt.sign(
     {
@@ -26,6 +58,7 @@ const Sendsmtp = async (email, type, random) => {
     }
 
     const mailOptions = {
+      from: process.env.USER_EMAIL,
       to: email,
       subject:
         type == 'signup'
@@ -33,6 +66,7 @@ const Sendsmtp = async (email, type, random) => {
           : type == 'contact'
           ? 'Contact'
           : 'Forgot your password? It happends to the bet of us.',
+      generateTextFromHTML: true,
       html:
         type == 'signup'
           ? `
@@ -46,15 +80,10 @@ const Sendsmtp = async (email, type, random) => {
           <br>
           <p>${random}</p>`,
     }
-    await transporter
-      .sendMail(mailOptions)
-      .then(function (email) {
-        res.status(200).json({ success: true, msg: 'Mail sent' })
-      })
-      .catch(function (exception) {
-        console.log(exception)
-        res.status(200).json({ success: false, msg: exception })
-      })
+    await smtpTransport.sendMail(mailOptions, (error, response) => {
+      error ? console.log(error) : console.log(response)
+      smtpTransport.close()
+    })
     return true
   } catch (e) {
     return {
