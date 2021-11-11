@@ -22,7 +22,7 @@ const MemberSection: React.FC<{ data: any; onRefresh: Function }> = ({
   const [Item, setItem] = useState<any>(null)
 
   const onDisable = (id: number, userid: number) => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .put(`/members/${id}/${userid}`)
       .then((res) => {
         if (res.data.success) {

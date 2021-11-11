@@ -32,7 +32,7 @@ const Forgot: React.FC<{}> = () => {
       return toast.error('Please input correct email.')
     }
 
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .post('/users/forgot', { email })
       .then((res) => {
         if (res.data.success) {

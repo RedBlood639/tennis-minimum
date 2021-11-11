@@ -14,7 +14,7 @@ const Members: React.FC<{}> = () => {
   const [data, setData] = useState<any>([])
   const [refresh, setRefresh] = useState<boolean>(false)
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/members')
       .then((res) => {
         if (res.data.success) {

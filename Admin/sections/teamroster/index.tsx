@@ -26,7 +26,7 @@ const TeamRoster: React.FC<{}> = () => {
   const [position, setPosition] = useState<string>('')
 
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/teamroster')
       .then(
         (res) => {
@@ -51,7 +51,7 @@ const TeamRoster: React.FC<{}> = () => {
   }
 
   const onRemoveItem = (id: number) => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .delete(`/teamroster/${id}`)
       .then(
         (res) => {
@@ -79,7 +79,7 @@ const TeamRoster: React.FC<{}> = () => {
       return toast.error('Please input the description')
     }
 
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .post('/teamroster', {
         title,
         position,

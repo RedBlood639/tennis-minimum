@@ -23,7 +23,7 @@ const MemberCard: React.FC<{
   id: number
 }> = ({ item, index, onRefresh, id }) => {
   const onDelete = (usernumber: number) => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .delete(`/lineup/member/${usernumber}/${id}`)
       .then(
         (response) => {
@@ -66,7 +66,7 @@ const DetailSection: React.FC<{
   }, [detail])
 
   const onSave = () => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .put('/lineup/detail', {
         title,
         position,

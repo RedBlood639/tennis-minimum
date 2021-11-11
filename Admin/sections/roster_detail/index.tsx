@@ -17,7 +17,7 @@ const RosterDetail: React.FC<{ rosterId: number }> = ({ rosterId }) => {
   const [refresh, setRefresh] = useState<boolean>(true)
 
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/teamroster/member', { params: { id: rosterId } })
       .then((res) => {
         if (res.data.success) {

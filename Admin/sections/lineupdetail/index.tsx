@@ -17,7 +17,7 @@ const LineupDetail: React.FC<{ lineupId: number }> = ({ lineupId }) => {
   const [refresh, setRefresh] = useState<boolean>(true)
 
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/lineup/member', { params: { id: lineupId } })
       .then((res) => {
         if (res.data.success) {

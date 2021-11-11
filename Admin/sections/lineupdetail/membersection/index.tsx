@@ -27,7 +27,7 @@ const MemberSection: React.FC<{
   }
 
   const onAddMembers = () => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .post('/lineup/member', { members: selected, id: lineupId })
       .then((res) => {
         if (res.data.success) {

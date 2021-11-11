@@ -27,7 +27,7 @@ const Lineup: React.FC<{}> = () => {
   }
 
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/lineup')
       .then((res) => {
         if (res.data.success) {
@@ -45,7 +45,7 @@ const Lineup: React.FC<{}> = () => {
   }, [])
 
   const onSave = () => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .post('/lineup', {
         title,
         time,
@@ -66,7 +66,7 @@ const Lineup: React.FC<{}> = () => {
   }
 
   const onRemoveItem = (id: number) => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .delete(`/lineup/${id}`)
       .then((res) => {
         if (res.data.success) {

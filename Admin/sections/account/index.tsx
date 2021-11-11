@@ -15,7 +15,9 @@ const Account: React.FC<{}> = () => {
   const [oldPass, setOldPass] = useState<string>('')
   const [newPass, setNewPass] = useState<string>('')
   const [confirmPass, setConfirmPass] = useState<string>('')
-
+  const [email, setEmail] = useState<string>(
+    localStorage.getItem('tennis-admin-email') || '',
+  )
   const onSave = () => {
     if (isEmpty(oldPass)) {
       return toast.error('Please input old password.')
@@ -32,7 +34,7 @@ const Account: React.FC<{}> = () => {
     if (newPass !== confirmPass) {
       return toast.error("New password didn't match with confirm one.")
     }
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .put('/account', {
         oldPass,
         newPass,
@@ -60,7 +62,11 @@ const Account: React.FC<{}> = () => {
       <AccountContent>
         <AccountForm>
           <AccountLabel>{'Email'}</AccountLabel>
-          <AccountInput disabled />
+          <AccountInput
+            disabled
+            value={email}
+            onChange={(e: any) => setEmail(e.target.value.trim())}
+          />
         </AccountForm>
         <AccountForm>
           <AccountLabel>{'Old Password'}</AccountLabel>

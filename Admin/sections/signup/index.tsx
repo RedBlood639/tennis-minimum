@@ -79,7 +79,7 @@ const SignIn: React.FC<{}> = () => {
       return toast.error("Password didn't matched.")
     }
 
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .post('/users/signup', {
         email,
         firstname,

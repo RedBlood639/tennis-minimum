@@ -38,7 +38,6 @@ const onLoginUser = async (req, res, next) => {
   if (!result.state) {
     throw new HttpException(401, 'Incorrect account.')
   }
-
   if (result.user.isDisable === 0) {
     throw new HttpException(401, 'this account was disabled.')
   }
@@ -123,10 +122,47 @@ const onVerify = async (req, res, next) => {
   }
   res.send({ success: true, type: false })
 }
+
+const onLoginAdmin = async (req, res, next) => {
+  const result = await UserModel.isEmptyUser({ email: req.body.email })
+  if (!result.state) {
+    throw new HttpException(401, 'Incorrect account.')
+  }
+  if (result.user.isDisable === 0) {
+    throw new HttpException(401, 'this account was disabled.')
+  }
+
+  if (result.user.code !== 22222) {
+    throw new HttpException(401, 'The account was not verified.')
+  }
+
+  if (result.user.role !== 'admin') {
+    throw new HttpException('This is not admin account.')
+  }
+  const isMatch = await bcrypt.compare(req.body.password, result.user.password)
+  if (!isMatch) {
+    throw new HttpException(401, 'Incorrect password.')
+  }
+
+  const token = jwt.sign(
+    { user_id: result.user.id.toString() },
+    process.env.SECRET_JWT,
+    {
+      expiresIn: '365d',
+    },
+  )
+  res.send({
+    success: true,
+    message: 'Success !',
+    token,
+    email: req.body.email,
+  })
+}
 /***********************************Export*******************************************/
 module.exports = {
   onCreateUser,
   onLoginUser,
   onForgot,
   onVerify,
+  onLoginAdmin,
 }

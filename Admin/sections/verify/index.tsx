@@ -7,7 +7,7 @@ const Verify: React.FC<{ token: string }> = ({ token }) => {
   const router = useRouter()
   const { loadDispatch } = useContext<any>(SentMessageContext)
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .post('/users/verify', { token })
       .then((res) => {
         if (res.data.success) {

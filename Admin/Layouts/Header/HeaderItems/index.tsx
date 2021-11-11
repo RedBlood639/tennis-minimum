@@ -17,7 +17,7 @@ const HeaderItems: React.FC<{}> = () => {
   const [login, setLogin] = useState<boolean>(false)
 
   useEffect(() => {
-    setLogin(localStorage.getItem('tennis') === null ? false : true)
+    setLogin(localStorage.getItem('tennis-admin-token') === null ? false : true)
   })
   const toChangePath = (href: string) => {
     router.push(href)
@@ -42,7 +42,8 @@ const HeaderItems: React.FC<{}> = () => {
 
   const onSignout = () => {
     toChangePath('/')
-    localStorage.removeItem('tennis')
+    localStorage.removeItem('tennis-admin-email')
+    localStorage.removeItem('tennis-admin-token')
   }
   return (
     <ItemgroupWrapper>

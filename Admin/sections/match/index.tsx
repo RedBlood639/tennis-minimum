@@ -45,7 +45,7 @@ const Match: React.FC<{}> = () => {
   }, [])
 
   const onGetItems = () => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/match')
       .then(
         (response) => {
@@ -63,7 +63,7 @@ const Match: React.FC<{}> = () => {
       )
   }
   const onRemoveItem = (id: number) => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .delete(`/match/${id}`)
       .then(
         (response) => {

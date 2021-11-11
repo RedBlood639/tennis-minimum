@@ -24,7 +24,7 @@ const Profile: React.FC<{}> = () => {
   const [birth, setBirth] = useState<string>('')
 
   useEffect(() => {
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .get('/profile')
       .then((res) => {
         if (res.data.success) {
@@ -54,7 +54,7 @@ const Profile: React.FC<{}> = () => {
     if (isEmpty(lastname)) {
       return toast.error('Please input the lastname')
     }
-    apiClientwithToken(localStorage.getItem('tennis'))
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
       .put('/profile', {
         firstname,
         lastname,

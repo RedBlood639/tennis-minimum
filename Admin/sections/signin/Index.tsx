@@ -46,15 +46,16 @@ const SignIn: React.FC<{}> = () => {
     if (isEmpty(password)) {
       return toast.error('Please input the password.')
     }
-    apiClientwithToken(localStorage.getItem('tennis'))
-      .post('/users/siginin', {
+    apiClientwithToken(localStorage.getItem('tennis-admin-token'))
+      .post('/users/siginin_admin', {
         email,
         password,
       })
       .then(
         (response) => {
           if (response.data.success) {
-            localStorage.setItem('tennis', response.data.token)
+            localStorage.setItem('tennis-admin-email', response.data.email)
+            localStorage.setItem('tennis-admin-token', response.data.token)
             toast.info(response.data.message)
             router.push('/panel')
           }
