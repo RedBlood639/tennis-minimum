@@ -1,46 +1,53 @@
-import type { AppProps } from 'next/app'
-import { Router } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { DefaultTheme } from '../site-settings/material'
-import PageLoader from '../components/Loader/page-loader'
-import AppLayout from '../Layouts/AppLayout/applayout'
-import { ToastContainer } from 'react-toastify'
+import type { AppProps } from "next/app";
+import { Router } from "next/router";
+import React, { useEffect, useState } from "react";
+import { DefaultTheme } from "../site-settings/material";
+import PageLoader from "../components/Loader/page-loader";
+import AppLayout from "../Layouts/AppLayout/applayout";
+import { ToastContainer } from "react-toastify";
 //import providers
-import { ThemeProvider } from 'styled-components'
-import { PageProvider } from '../contexts/pageLoad/pageloader.provider'
+import { ThemeProvider } from "styled-components";
+import { PageProvider } from "../contexts/pageLoad/pageloader.provider";
 //import style
-import GlobalStyle from '../site-settings/global'
-import { SentMessageProvider } from '../contexts/MessageSent/sentmessage.provider'
-import 'react-responsive-modal/styles.css'
-import 'react-toastify/dist/ReactToastify.css'
+import GlobalStyle from "../site-settings/global";
+import { SentMessageProvider } from "../contexts/MessageSent/sentmessage.provider";
+import "react-responsive-modal/styles.css";
+import "react-toastify/dist/ReactToastify.css";
+import { RouteGuard } from "../components/RouteGuard/RouteGuard";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    Router.events.on('routeChangeStart', (url) => {
-      setLoading(true)
-    })
-    Router.events.on('routeChangeComplete', () => {
-      setLoading(false)
-    })
-    Router.events.on('routeChangeError', (err) => {
-      setLoading(false)
-    })
-  }, [])
+    Router.events.on("routeChangeStart", (url) => {
+      setLoading(true);
+    });
+    Router.events.on("routeChangeComplete", () => {
+      setLoading(false);
+    });
+    Router.events.on("routeChangeError", (err) => {
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <ThemeProvider theme={DefaultTheme}>
       <PageProvider>
         <SentMessageProvider>
           <AppLayout>
-            {loading ? <PageLoader /> : <Component {...pageProps} />}
+            {loading ? (
+              <PageLoader />
+            ) : (
+              <RouteGuard>
+                <Component {...pageProps} />
+              </RouteGuard>
+            )}
           </AppLayout>
           <GlobalStyle />
           <ToastContainer />
         </SentMessageProvider>
       </PageProvider>
     </ThemeProvider>
-  )
-}
-export default MyApp
+  );
+};
+export default MyApp;
